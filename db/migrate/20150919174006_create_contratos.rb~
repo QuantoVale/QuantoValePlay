@@ -17,6 +17,7 @@ class CreateContratos < ActiveRecord::Migration
       t.string :valorInicial
       t.string :aditivosContratos
       t.string :eventosContratos
+
       t.timestamps
     end
   end
