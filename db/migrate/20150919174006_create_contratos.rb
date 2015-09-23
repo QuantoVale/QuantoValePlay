@@ -1,7 +1,7 @@
 class CreateContratos < ActiveRecord::Migration
   def change
     create_table :contratos do |t|
-      t.integer :identificadorContrato
+      t.string :identificadorContrato
       t.string :uasg
       t.string :modalidadeLicitacao
       t.string :codigoContrato
