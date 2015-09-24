@@ -13,28 +13,28 @@ class Contrato < ActiveRecord::Base
 
 
       #Estrutura de repetição usada para passar por todo JSON da API
-      response.each do |item|
+      data.each do |item|
         #Estrututa de leitura do API
         # :atributoModel => item('atributoAPI')
         #Criando uma nova instancia do contrato e atribuindo valores
         #que serão retirados da API
             u = Contrato.new(
-            :identificadorContrato => item('Identificador'),
-            :uasg => item('uasg'),
-            :modalidadeLicitacao => item('modalidade_licitacao'),
-            :codigoContrato => item('codigo_contrato'),
-            :licitacaoAssociada => item('licitacao_associada'),
-            :objeto => item('objeto'),
-            :numeroAditivos => item('numero_aditivo'),
-            :numeroProcessos => item('numero_processo'),
-            :CPFContratada => item('cnpj_contratada'),
-            :dataAssinatura => item('data_assinatura'),
-            :fundamentoGeral => item('fundamento_geral'),
-            :dataInicioVigencia => item('data_inicio_vigencia'),
-            :dataTerminoVigencia => item('data_termino_vigencia'),
-            :valorInicial => item('valor_inicial')
+            :identificadorContrato => item['Identificador'],
+            :uasg => item['uasg'],
+            :modalidadeLicitacao => item['modalidade_licitacao'],
+            :codigoContrato => item['codigo_contrato'],
+            :licitacaoAssociada => item['licitacao_associada'],
+            :objeto => item['objeto'],
+            :numeroAditivos => item['numero_aditivo'],
+            :numeroProcessos => item['numero_processo'],
+            :CPFContratada => item['cnpj_contratada'],
+            :dataAssinatura => item['data_assinatura'],
+            :fundamentoGeral => item['fundamento_geral'],
+            :dataInicioVigencia => item['data_inicio_vigencia'],
+            :dataTerminoVigencia => item['data_termino_vigencia'],
+            :valorInicial => item['valor_inicial']
           )
-          #
+          #salva a informação no banco;
             u.save
       end
   end
