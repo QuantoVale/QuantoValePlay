@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20150919174006) do
 
   create_table "contratos", force: true do |t|
-    t.integer  "identificadorContrato"
+    t.string   "identificadorContrato"
     t.string   "uasg"
     t.string   "modalidadeLicitacao"
     t.string   "codigoContrato"

@@ -1,7 +1,10 @@
-<%= @contratos.each do |contrato| %>
+<%= @contratos.each do |c| %>
 
-  Name :<%= link_to  contrato.name %><br/>
+<div id="contrato-information-<%=c.id%>">
+<%= link_to "Responder", :controller => "contratos", :action => "show" %>
+    Quanto vale:
+
+<%= link_to c.objeto, :controller => "contratos", action: "show", :id => c.id %>
+ </div>
+<br>
 <% end %>
-
-<br>
-<br>

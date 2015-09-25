@@ -1,7 +1,8 @@
-<%= @contratos.each do |contrato| %>
 
-  Name :<%= link_to  contrato.name %><br/>
-<% end %>
+  <%=  @contratos.objeto %><br/>
+
+  <%= button_to "Editar", controller: "contratos",  action: "update", id: @contratos.id %>
+
 
 <br>
 <br>
