@@ -5,8 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Contrato.create(identificadorContrato: 123)
-Contrato.create(valorInicial: 213)
-Contrato.create(numeroProcessos: 321)
-Contrato.create(numeroAditivos: 132)
-Contrato.create(licitacaoAssociada: aaa)
+contrato = Contrato.new
+contrato.identificadorContrato = 123
+contrato.save
