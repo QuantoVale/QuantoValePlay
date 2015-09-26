@@ -1,6 +1,10 @@
 
   <%=  @contratos.objeto %><br/>
+  Valor Inicial = R$<%=  @contratos.valorInicial %><br/>
 
+  Valor Falso = R$<%= @valorFalso1 %><br/>
+  Valor Falso = R$<%= @valorFalso2 %><br/>
+  Valor Falso = R$<%= @valorFalso3 %><br/>
   <%= button_to "Editar", controller: "contratos",  action: "update", id: @contratos.id %>
 
 
