@@ -13,9 +13,6 @@ class ContratosController < ApplicationController
       puts "*" * 100, params["id"], "*" * 100
       @contratos = Contrato.find(params["id"])
       puts @contratos.id
-
-      #render json:@contratos
-      #render json:@valorFalso1
       array = [@contratos.objeto,@valorFalso1,@valorFalso2,@valorFalso3]
       render json:array
 
