@@ -6,16 +6,17 @@ class ContratosController < ApplicationController
   end
 
   def show
-      @valorFalso1 = Float(Contrato.find(params["id"]).valorInicial)* 10
-      @valorFalso2 = Float(Contrato.find(params["id"]).valorInicial)* 15
-      @valorFalso3 = Float(Contrato.find(params["id"]).valorInicial)* 20
-
-      puts "*" * 100, params["id"], "*" * 100
+      @value_true = Float(Contrato.find(params["id"]).valorInicial)
+      @value_false_1 = Float(Contrato.find(params["id"]).valorInicial)*rand(30)/(rand(30))
+      @value_false_2 = Float(Contrato.find(params["id"]).valorInicial)*rand(30)/(rand(30))
+      @value_false_3 = Float(Contrato.find(params["id"]).valorInicial)*rand(30)/(rand(30))
       @contratos = Contrato.find(params["id"])
-      puts @contratos.id
-      array = [@contratos.objeto,@valorFalso1,@valorFalso2,@valorFalso3]
-      render json:array
 
+      array_value = [@value_true,@value_false_1,@value_false_2,@value_false_3]
+      array_objeto = [@contratos.objeto.capitalize]
+      array_question = [array_objeto, array_value.shuffle, @value_true]
+      array_question.flatten!
+      render json:array_question
   end
 
   def edit

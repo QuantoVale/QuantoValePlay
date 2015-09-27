@@ -4,14 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def CriarJogo
-
     roomGame = Contrato.find[:id]
-
     @contratoOriginal = Contrato.find[:id]
     @contratoFalso = Contrato.new
     @contratoFalso.valor = contratoOriginal.valor + 100
-
-  
   end
 
 end

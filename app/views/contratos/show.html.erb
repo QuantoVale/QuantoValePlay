@@ -1,12 +1,10 @@
+  <%=  @contratos.objeto.capitalize %><br/>
 
-  <%=  @contratos.objeto %><br/>
-  Valor Inicial = R$<%=  @contratos.valorInicial %><br/>
-
-  Valor Falso = R$<%= @valorFalso1 %><br/>
-  Valor Falso = R$<%= @valorFalso2 %><br/>
-  Valor Falso = R$<%= @valorFalso3 %><br/>
+  <%=  @contratos.valorInicial %><br/>
+  <%= @value_false_1 %><br/>
+  <%= @value_false_2 %><br/>
+  <%= @value_false_3 %><br/>
+  <%= @value_true %><br/>
   <%= button_to "Editar", controller: "contratos",  action: "update", id: @contratos.id %>
-
-
 <br>
 <br>
