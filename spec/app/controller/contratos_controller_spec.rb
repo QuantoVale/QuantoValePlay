@@ -33,6 +33,9 @@ RSpec.describe ContratosController, type: :controller do
 
           get :show, id: contract.id
           expect(assigns(:contratos)).to eq(contract)
+          expect(assigns(:value_false_1)).not_to eq(contract.valorInicial)
+          expect(assigns(:value_false_2)).not_to eq(contract.valorInicial)
+          expect(assigns(:value_false_3)).not_to eq(contract.valorInicial)
 
         end
     end
