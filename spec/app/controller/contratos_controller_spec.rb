@@ -5,12 +5,12 @@ RSpec.describe ContratosController, type: :controller do
     it "should show all contracts" do
       contracts = Contrato.all
       get :index
-      expect(contracts).to match(Contrato.all)
+      expect(assigns(:contratos)).to eq(contracts)
     end
   end
 
     describe "GET #Show" do
-      it "assigns @contract" do
+      it "should show a @contract" do
           contract = Contrato.new
           contract.identificadorContrato = "1"
           contract.uasg = "1"
