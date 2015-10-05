@@ -32,10 +32,16 @@ RSpec.describe ContratosController, type: :controller do
           contract.save
 
           get :show, id: contract.id
-          expect(assigns(:contratos)).to eq(contract)
+          
+          #teste valores falsos != valor inicial
           expect(assigns(:value_false_1)).not_to eq(contract.valorInicial)
           expect(assigns(:value_false_2)).not_to eq(contract.valorInicial)
           expect(assigns(:value_false_3)).not_to eq(contract.valorInicial)
+
+          #teste valores falsos != entre si
+          expect(assigns(:value_false_1)).not_to eq(:value_false_2)
+          expect(assigns(:value_false_1)).not_to eq(:value_false_3)
+          expect(assigns(:value_false_2)).not_to eq(:value_false_3)
 
         end
     end
