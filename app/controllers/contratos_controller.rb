@@ -4,18 +4,23 @@ class ContratosController < ApplicationController
        @contratos = Contrato.all
        render json:@contratos
   end
-  
+
+  def values_aleatory ()
+    return @value_true*(1+rand(30))/(1+(rand(30)))
+  end
+
+  def applying_flatten()
+    @array_value = [@values_random, @value_true.round(0)]
+    return @array_value.flatten!
+  end
+
   def show
+      @values_random = Array.new(3)
       @value_true = Float(Contrato.find(params["id"]).valorInicial)
-      @value_false_1 = Float(Contrato.find(params["id"]).valorInicial)*(1+rand(30))/(1+(rand(30)))
-      @value_false_2 = Float(Contrato.find(params["id"]).valorInicial)*(1+rand(30))/(1+(rand(30)))
-      @value_false_3 = Float(Contrato.find(params["id"]).valorInicial)*(1+rand(30))/(1+(rand(30)))
-      @contratos = Contrato.find(params["id"])
-      @array_value = [@value_true,@value_false_1,@value_false_2,@value_false_3]
-      @array_value = [@value_true.round(0),@value_false_1.round(0),@value_false_2.round(0),@value_false_3.round(0)]
-      @array_objeto = [@contratos.objeto.capitalize]
-      @array_question = [@array_objeto, @array_value.shuffle, @value_true]
-      @array_question = [@array_objeto, @array_value.shuffle, @value_true.round(0)]
+      for i in 0..2
+          @values_random[i] = values_aleatory().round(0)
+      end
+      @array_question = [Contrato.find(params["id"]).objeto.capitalize, applying_flatten().shuffle, @value_true.round(0)]
       @array_question.flatten!
       render json:@array_question
     end
