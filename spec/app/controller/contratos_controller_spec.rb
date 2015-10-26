@@ -1,50 +1,42 @@
 require 'spec_helper'
 
 RSpec.describe ContratosController, type: :controller do
-  describe "GET #Index" do
-    it "should show all contracts" do
-      contracts = Contrato.all
-      get :index
-      expect(assigns(:contratos)).to eq(contracts)
+    #teste todo
+    describe "GET #Index" do
+      #condição
+      it "should show all contracts" do
+          contracts = Contrato.all
+          #pega os valores
+          get :index
+          #compara dois objetos
+          expect(assigns(:contratos)).to eq(contracts)
+      end
+
+      #condição
+      it "should render json" do
+          #pega os valores
+          contracts = (Contrato.all).to_json
+          get :index
+          expect(response.body).to eq(contracts)
+      end
     end
-  end
+    # indentifica um método o rash #
+    describe "POST #values_aleatory" do
+        it "original value should be different from aleatory value" do
+            value_true = 10
+            value_aleatory = value_true*(1+rand(30))/(1+(rand(30)))
+            expect(value_true).not_to eq(value_aleatory)
+        end
 
-    describe "GET #Show" do
-      it "should show a @contract" do
-          contract = Contrato.new
-          contract.identificadorContrato = "1"
-          contract.uasg = "1"
-          contract.modalidadeLicitacao = "1"
-          contract.codigoContrato = "1"
-          contract.licitacaoAssociada = "1"
-          contract.objeto = "1"
-          contract.numeroAditivos = 1
-          contract.numeroProcessos = 1
-          contract.CPFContratada = "1"
-          contract.dataAssinatura = "1"
-          contract.fundamentoGeral = "1"
-          contract.dataInicioVigencia = "1"
-          contract.dataTerminoVigencia = "1"
-          contract.valorInicial = "1"
-          contract.aditivosContratos = "1"
-          contract.eventosContratos = "1"
-
-          contract.save
-
-          get :show, id: contract.id
-          
-          #teste valores falsos != valor inicial
-          expect(assigns(:value_false_1)).not_to eq(contract.valorInicial)
-          expect(assigns(:value_false_2)).not_to eq(contract.valorInicial)
-          expect(assigns(:value_false_3)).not_to eq(contract.valorInicial)
-
-          #teste valores falsos != entre si
-          expect(assigns(:value_false_1)).not_to eq(:value_false_2)
-          expect(assigns(:value_false_1)).not_to eq(:value_false_3)
-          expect(assigns(:value_false_2)).not_to eq(:value_false_3)
+        it "it expected a value not exceeding the minimum value and maximum value parameters" do
+            value_true = 10
+            value_aleatory = value_true*(1+rand(30))/(1+(rand(30)))
+            expect(value_aleatory).to be_between(value_true/31, value_true*31)
+        end
+    end
+    describe "expected to join 4 strings into a single variable" do
+        it "should string" do
 
         end
     end
-
-
 end
