@@ -1,0 +1,26 @@
+<ion-view>
+    <ion-content class="background">
+        <img class="full-image" src="img/logo.png">
+        <div ng-if="!isAuthenticated()">
+            <button ng-click="authenticate('facebook')" class="login1 button button-full button-royal icon-left ion-social-facebook">
+                Acessar com Facebook
+            </button>
+            <button ng-click="authenticate('google')" class="login2 button button-full button-assertive  icon-left ion-social-googleplus">
+                Acessar com Google+
+            </button>
+        </div>
+        <div ng-if="isAuthenticated()">
+            <div class="card">
+                <div class="item item-text text-center">
+                    Você está logado
+                </div>
+            </div>
+            <button ng-click="logout()" class="button button-full button-royal">
+                Log Out
+            </button>
+        </div>
+        <button  ui-sref="start.start" class="enter button button-full button-clear icon-right ion-chevron-right button-clear button-light">
+            Entrar
+        </button>
+    </ion-content>
+</ion-view>

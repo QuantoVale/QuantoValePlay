@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <!-- Jasmine References -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/jasmine-html.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/2.3.3/boot.min.js"></script>
+
+    <!-- Angular and Angular Mock references -->
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular.min.js"></script>
+    <script type="text/javascript" src="https://code.angularjs.org/1.4.0-rc.2/angular-mocks.js"></script>
+  </head>
+  <body></body>
+
+   <script type="text/javascript">
+
+    angular.module('starter.controllers', []).controller('Answer', function($scope) {
+    $scope.compare = function(x, y)
+    {
+        if ($scope.x === $scope.y) {
+        //    document.getElementsByTagName('result')[0].innerHTML = 'Certo!';
+            $scope.resp = "certo"
+        } else {
+      //      document.getElementsByTagName('result')[0].innerHTML = 'Errado!';
+            $scope.resp = "errado"
+        }
+    }
+    });
+    // Test Code
+
+    describe('teste', function () {
+    beforeEach(module('starter.controllers'));
+      var $controller;
+      beforeEach(inject(function(_$controller_){
+        $controller = _$controller_;
+      })) ;
+
+      describe('compare', function () {
+       it('x===y', function () {
+         var $scope = {};
+         var controller = $controller('Answer', { $scope: $scope });
+         $scope.x = 0;
+         $scope.y = 0;
+        $scope.compare();
+
+         expect($scope.resp).toBe("certo");
+       });
+           });
+         });
+       </script>
+     </html>
