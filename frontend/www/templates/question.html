@@ -1,0 +1,29 @@
+<ion-view>
+    <ion-content class="backgroundQuestion padding">
+        <div class="text-center opcquest">
+            <h4>
+                <font color="white">Quanto vale: {{values.ask}}?</font>
+            </h4>
+        </div>
+        <ul class="list "ng-repeat="val in values.val" ng-controller="Answer">
+            <li class="center">
+                <a ng-click="compare({{val}},{{values.trueval}})" id="button2">
+                <span>R$ {{val}}</span>
+                </a>
+            </li>
+        </ul>
+        <button class="button button-full button-clear">
+            <result></result>
+        </button>
+    </ion-content>
+</ion-view>
+<div class="tabs tabs-icon-top tabs-balanced">
+    <a class="tab-item" ng-controller="Exit" ng-click="encerrar()">
+    <i class="icon ion-ios-close-empty"></i>
+        Encerrar
+    </a>
+    <a class="tab-item">
+    <i class="icon ion-forward" ></i>
+        Pular
+    </a>
+</div>

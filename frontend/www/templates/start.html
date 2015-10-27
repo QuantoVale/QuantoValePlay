@@ -1,0 +1,31 @@
+<ion-view>
+    <ion-content class="backgroundStart" scroll="false">
+        <div ng-if="!isAuthenticated()">
+            <div class="logo icon-profile text-center">
+                <img src="img/ionic.png">
+                <h1>
+                    <font color="white">Bem-vindo,</font>
+                </h1>
+            </div>
+            <h2 class="color-font">usuário não cadastrado!</h2>
+        </div>
+        <div ng-if="isAuthenticated()">
+            <div class="logo icon-profile text-center" ng-controller="ProfileCtrl">
+                <img class="circular"ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
+                <h1>
+                    <font color="white">Bem-vindo,</font>
+                </h1>
+                <h2 class="color-font">{{user.name}}!</h2>
+            </div>
+        </div>
+        <button ui-sref="theme.theme" class="opcoes1 button button-full button-positive icon-left ion-plus">
+            Novo Jogo
+        </button>
+        <button ui-sref="leaderboard.leaderboard" class="opcoes2 button button-full button-calm icon-left ion-navicon">
+            Maiores Pontuações
+        </button>
+    </ion-content>
+</ion-view>
+<div class="bar bar-footer bar-clear">
+    <a class="button button-clear icon-left ion-ios-arrow-left" href="#/index.html"> Voltar <a>
+</div>

@@ -1,0 +1,260 @@
+/* Empty. Add your own CSS if you like */
+.full-image{
+    align-items: center;
+    margin-top: 30%;
+    margin-bottom: 20%;
+}
+
+.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.icon-profile{
+    align-items: center;
+    margin-top: 0%;
+}
+
+.backgroundStart {
+    background: url('../img/theme.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    filter: contrast(1.5);
+}
+
+.backgroundEndgame {
+    background: url('../img/back-final.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    align-items: center;
+}
+
+figure, figcaption {
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+#polaroid{
+width:100%;
+overflow:hidden;
+padding:20px 10px;
+}
+#polaroid figure{
+float:left;
+width:200px;
+margin:10px 20px;
+padding: 6px 8px 10px 8px;
+-webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+-moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+background: #eee6d8;
+background: -webkit-linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
+background: -moz-linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
+background: -o-linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
+background: -ms-linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
+background: linear-gradient(top, #ede1c9, #fef8e2 20%, #f2ebde 60%);
+-webkit-transform:rotate(-1deg);
+-moz-transform: rotate(-1deg);
+-o-transform: rotate(-1deg);
+-ms-transform: rotate(-1deg);
+transform: rotate(-1deg);
+-webkit-backface-visibility:hidden; /*prevent rotated text being jagged in Chrome and Safari*/
+}
+#polaroid figure:nth-child(even) {
+-webkit-transform:rotate(2deg);
+-moz-transform: rotate(2deg);
+-o-transform: rotate(2deg);
+-ms-transform: rotate(2deg);
+transform: rotate(2deg);
+-webkit-backface-visibility:hidden; /*prevent rotated text being jagged in Chrome and Safari*/
+-webkit-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+-moz-box-shadow: 4px 4px 8px -4px rgba(0, 0, 0, .75);
+box-shadow: -4px 4px 8px -4px rgba(0, 0, 0, .75);
+}
+#polaroid figure:before {
+content: '';
+position: absolute;
+left:5px;
+top: -15px;
+width: 75px;
+height: 25px;
+background-color: rgba(222,220,198,0.7);
+-webkit-transform: rotate(-12deg);
+-moz-transform: rotate(-12deg);
+-o-transform: rotate(-12deg);
+-ms-transform: rotate(-12deg);
+}
+#polaroid figure:nth-child(even):before {
+left:150px;
+top: -15px;
+width: 55px;
+height: 25px;
+-webkit-transform: rotate(12deg);
+-moz-transform: rotate(12deg);
+-o-transform: rotate(12deg);
+-ms-transform: rotate(12deg);
+}
+#polaroid figcaption{
+text-align:center;
+font-family: 'Reenie Beanie', cursive; /*Reenie Beanie is available through Google Webfonts http://code.google.com/webfonts/specimen/Reenie+Beanie*/
+font-size:1.3em;
+color:#454f40;
+letter-spacing:0.09em;
+}
+/**IE Hacks - see http://css3pie.com/ for more info on how to use CS3Pie and to download the latest version**/
+#polaroid figure{
+-pie-background: linear-gradient(#ede1c9, #fef8e2 20%, #f2ebde 60%);
+behavior: url(assets/pie/PIE.htc);
+position:relative; /*required to make PIE work*/
+
+}
+
+.backgroundTheme {
+    background: url('../img/brasilia.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    align-items: center;
+}
+
+.backgroundQuestion {
+    background: #2F4F4F;
+    background-size: cover;
+    background-position: center;
+}
+
+.background.scroll-content {
+    background: url('../img/myBackground.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-top: 0%;
+    z-index: 2;
+}
+
+.login1{
+    margin-left: 0%;
+    margin-top: 15%;
+}
+.login2{
+    margin-left: 0%;
+    margin-top: 1%;
+
+}
+.opcoes1{
+    margin-left: 0%;
+    margin-top: 15%;
+}
+.opcoes2{
+    margin-left: 0%;
+    margin-top: 1%;
+
+}
+.enter{
+    margin-top: 10%;
+    margin-left: 0%;
+}
+.opcquest{
+    margin-top: 20%;
+}
+.radiobuttons{
+    margin-top: 30%;
+}
+.logo{
+    margin-top: 25%;
+    filter: contrast(1.5);
+}
+
+.my-overlay {
+  background-color: white;
+}
+
+.border{
+    color: white;
+    text-align: center;
+    align-items: center;
+    text-outline: 2px 2px #ff0000;
+}
+
+h1{
+    color: white;
+    text-align: center;
+    align-items: center;
+}
+
+h2{
+    text-align: center;
+}
+
+.color-font{
+    color: white;
+}
+.circular {
+	width: 150px;
+	height: 150px;
+	border-radius: 75px;
+	-webkit-border-radius: 75px;
+	-moz-border-radius: 75px;
+}
+.center{
+    align-items: center;
+    text-align: center;
+}
+
+#button2 {
+    display: inline-block;
+    margin-top: 3%;
+    width: 90%;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow:    0 8px 0 #4169E1, 0 15px 20px rgba(0, 0, 0, .35);
+    -moz-box-shadow: 0 8px 0 #4169E1, 0 15px 20px rgba(0, 0, 0, .35);
+    box-shadow: 0 8px 0 #4169E1, 0 15px 20px rgba(0, 0, 0, .35);
+    -webkit-transition: -webkit-box-shadow .1s ease-in-out;
+    -moz-transition: -moz-box-shadow .1s ease-in-out;
+    -o-transition: -o-box-shadow .1s ease-in-out;
+    transition: box-shadow .1s ease-in-out;
+    font-size: 16px;
+    color: #fff;
+}
+
+#button2 span {
+    width: 100%;
+    display: inline-block;
+    padding: 10px 110px;
+    background-color: #1E90FF;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, .15);
+    -moz-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, .15);
+    box-shadow: inset 0 -1px 1px rgba(255, 255, 255, .15);
+    font-family: 'Pacifico', Arial, sans-serif;
+    line-height: 1;
+    text-shadow: 0 -1px 1px rgba(175, 49, 95, .7);
+    -webkit-transition: background-color .2s ease-in-out, -webkit-transform .1s ease-in-out;
+    -moz-transition: background-color .2s ease-in-out, -moz-transform .1s ease-in-out;
+    -o-transition: background-color .2s ease-in-out, -o-transform .1s ease-in-out;
+    transition: background-color .2s ease-in-out, transform .1s ease-in-out;
+}
+
+#button2:hover span {
+    width: 100%;
+    background-color: #00BFFF;
+    text-shadow: 0 -1px 1px rgba(175, 49, 95, .9), 0 0 5px rgba(255, 255, 255, .8);
+}
+
+#button2:active, #button:focus {
+    width: 90%;
+    -webkit-box-shadow:    0 8px 0 #4169E1, 0 12px 10px rgba(0, 0, 0, .3);
+    -moz-box-shadow: 0 8px 0 #4169E1, 0 12px 10px rgba(0, 0, 0, .3);
+    box-shadow:    0 8px 0 #4169E1, 0 12px 10px rgba(0, 0, 0, .3);
+}
+
+#button2:active span {
+    width: 100%;
+    -webkit-transform: translate(0, 4px);
+    -moz-transform: translate(0, 4px);
+    -o-transform: translate(0, 4px);
+    transform: translate(0, 4px);
+}

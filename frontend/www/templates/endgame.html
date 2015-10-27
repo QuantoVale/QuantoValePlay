@@ -1,0 +1,38 @@
+<ion-view>
+    <ion-content class="backgroundEndgame">
+        <div ng-if="!isAuthenticated()">
+            <div class="logo icon-profile text-center">
+                <img src="img/ionic.png">
+            </div>
+            <h2>
+                <font color="white">Pontuação:</font>
+            </h2>
+            <button class="button button-full button-positive icon-left ion-star">
+            10000
+            </button>
+        </div>
+        <div ng-if="isAuthenticated()" class="logo text-center" ng-controller="ProfileCtrl" id="polaroid">
+            <figure class="center">
+                <img class="displayed" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=200&height=200" width="175" height="175" alt="An old tree" />
+                <figcaption>{{user.name}}</figcaption>
+            </figure>
+            <br>
+            <h2>
+                <font color="white">Pontuação:</font>
+            </h2>
+            <button class="button button-full button-positive icon-left ion-star">
+            10000
+            </button>
+        </div>
+    </ion-content>
+</ion-view>
+<div class="tabs tabs-icon-top tabs-balanced">
+    <a class="tab-item" ui-sref="start.start">
+    <i class="icon ion-ios-home"></i>
+    Menu Principal
+    </a>
+    <a class="tab-item" ui-sref="leaderboard.leaderboard">
+    <i class="icon ion-navicon" ></i>
+    Melhores Pontuações
+    </a>
+</div>
