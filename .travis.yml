@@ -1,7 +1,6 @@
 language: ruby
 
 before_script:
-  -bundle install
   -rake db:migrate RAILS_ENV=test
   
 
