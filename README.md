@@ -5,3 +5,6 @@
 
 
 [![Throughput Graph](https://graphs.waffle.io/QuantoVale/QuantoValePlay/throughput.svg)](https://waffle.io/QuantoVale/QuantoValePlay/metrics)
+
+
+[![Build Status](https://travis-ci.org/QuantoVale/QuantoValePlay.svg)](https://travis-ci.org/QuantoVale/QuantoValePlay)
