@@ -30,6 +30,12 @@ angular.module('starter.controllers', ['callRails'])
 
 .controller('JumpQuestion',function($scope, $http, ValuesService){
 
+  ValuesService.buttonPress().then(function(response){
+      console.log(ValuesService.getPreviousId);
+      console.log(response.data);
+      $scope.values = response.data;
+})
+
   $scope.jump = function(){
 
       ValuesService.buttonPress().then(function(response){
