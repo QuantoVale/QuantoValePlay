@@ -93,7 +93,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
             views: {
                 'question': {
                     templateUrl: 'templates/question.html',
-                    controller: 'valuesController'
+                    controller: 'JumpQuestion'
                 }
             }
         });
