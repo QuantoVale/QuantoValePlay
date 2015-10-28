@@ -17,7 +17,7 @@ angular.module('starter.controllers', ['callRails'])
 
 .controller("ContractsController",
     function($scope, $http) {
-        var url = "http://localhost:3000/contratos/index";
+        var url = "http://0.0.0.0:3000/contratos/index";
 
         $http.get(url).success(function(data) {
             console.log(data);
@@ -34,7 +34,7 @@ angular.module('starter.controllers', ['callRails'])
       console.log(ValuesService.getPreviousId);
       console.log(response.data);
       $scope.values = response.data;
-})
+  })
 
   $scope.jump = function(){
 
@@ -67,6 +67,8 @@ angular.module('starter.controllers', ['callRails'])
                 document.getElementsByTagName('result')[0].innerHTML = 'Errado!';
             }
         }
+        document.getElementsByTagName('result')[0].innerHTML = ' ';
+
         $scope.pular = function() {
             document.getElementsByTagName('result')[0].innerHTML = ' ';
         }
