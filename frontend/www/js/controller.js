@@ -42,17 +42,38 @@ function($scope, $http) {
 })
 
 .controller('Answer',
-function($scope,$ionicPopup) {
-  $scope.compare = function(x, y)
-  {
-    if (x === y)
-    {
-      document.getElementsByTagName('result')[0].innerHTML = 'Certo!';
-    } else {
-      document.getElementsByTagName('result')[0].innerHTML = 'Errado!';
-    }
-  }
-})
+    function($scope) {
+        $scope.compare = function(x, y, id) {
+            var size = document.getElementsByTagName('span').length;
+
+            if (x === y) {
+                document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
+                document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
+                document.getElementsByTagName('result')[0].innerHTML = 'Certo!';
+            } else {
+                document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
+                document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
+                document.getElementsByTagName('result')[0].innerHTML = 'Errado!';
+            }
+            var size = document.getElementsByTagName('li').length;
+            for(var i=0;i<size;i++){
+                document.getElementsByTagName('li')[i].style.pointerEvents = "none";
+            }
+
+        }
+        $scope.pular = function() {
+            var size = document.getElementsByTagName('span').length;
+            for(var i=0;i<size;i++){
+                document.getElementsByTagName('span')[i].style.backgroundColor = "#1E90FF";
+                document.getElementsByTagName('span')[i].style.boxShadow = "0 8px 0 #4169E1";
+            }
+            var size = document.getElementsByTagName('li').length;
+            for(var i=0;i<size;i++){
+                document.getElementsByTagName('li')[i].style.pointerEvents = "auto";
+            }
+            document.getElementsByTagName('result')[0].innerHTML = ' ';
+        }
+    })
 .controller('Exit',
 function($scope,$ionicPopup,$state) {
   $scope.encerrar = function()
