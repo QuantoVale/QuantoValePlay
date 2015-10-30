@@ -11,18 +11,12 @@ angular.module('Score', [])
 var score = 0;
 
   return{
-      buttonPress: function(){
-        alert(score +=10);
-      }
+
+    getScore: function(){
+      return score +=50;
+    }
+
 
 
   }
 }])
-{
-
-
-
-
-
-
-}

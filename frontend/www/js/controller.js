@@ -66,10 +66,17 @@ function($scope, $http) {
 })
 
 .controller('Answer',
-function($scope,ScoreEntry) {
+function($scope,ScoreEntry, $ionicPopup) {
   $scope.compare = function(x, y) {
     if (x === y) {
-      ScoreEntry.buttonPress()
+
+      $scope.showAlert = function() {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Sua pontuação',
+          template: ScoreEntry.getScore()
+        });
+      };
+
       document.getElementsByTagName('result')[0].innerHTML = 'Certo!';
 
     } else {
@@ -80,6 +87,38 @@ function($scope,ScoreEntry) {
     document.getElementsByTagName('result')[0].innerHTML = ' ';
   }
 })
+
+.controller('SomeScore',
+function($scope, ScoreEntry){
+ $scope.pontuacao = function(){
+    ScoreEntry.getScore()
+ }
+})
+
+.controller('Exit',
+function($scope,$ionicPopup,$state) {
+  $scope.encerrar = function()
+  {
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Fim da partida',
+      template: 'Deseja realmente encerrar a partida?'
+    });
+
+    confirmPopup.then(function(res)
+    {
+
+      if(res)
+      {
+        $state.go('start.start');
+        console.log('Encerrar');
+      }
+      else
+      console.log('Cancelar encerramento');
+    })
+  $scope.pular = function() {
+    document.getElementsByTagName('result')[0].innerHTML = ' ';
+   }
+ }})
 
 .controller('HomeCtrl',
 function($scope, $ionicPopup, $auth) {
