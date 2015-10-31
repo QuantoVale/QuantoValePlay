@@ -28,14 +28,18 @@ class ContratosController < ApplicationController
   end
 
   def show
+      @contrato = Contrato.find(params["id"])
       values_random = Array.new(3)
-      value_true = Float(Contrato.find(params["id"]).valorInicial).round(0)
+
+      value_true = Float(@contrato.valorInicial).round(0)
+
       for i in 0..2
           values_random[i] = validate_values_aleatory(values_aleatory(value_true).round(0),value_true)
       end
       #.flatten junta .shuffle mistura
-      array_question = {"ask"=>Contrato.find(params["id"]).objeto.capitalize,
+      array_question = {"ask"=>@contrato.objeto.capitalize,
         "val"=>applying_shuffle(applying_flatten(merge(values_random, value_true))), "trueval"=>value_true}
+
       render json:array_question
   end
 end
