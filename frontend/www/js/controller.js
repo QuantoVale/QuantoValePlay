@@ -42,7 +42,7 @@ function($scope, $http) {
 })
 
 .controller('Answer',
-    function($scope) {
+    function($scope, $ionicModal) {
         $scope.compare = function(x, y, id) {
             var size = document.getElementsByTagName('span').length;
 
@@ -51,16 +51,16 @@ function($scope, $http) {
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
                 document.getElementsByTagName('result')[0].innerHTML = 'Certo!';
             } else {
-                document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
+                document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
                 document.getElementsByTagName('result')[0].innerHTML = 'Errado!';
             }
             var size = document.getElementsByTagName('li').length;
             for(var i=0;i<size;i++){
                 document.getElementsByTagName('li')[i].style.pointerEvents = "none";
             }
-
         }
+
         $scope.pular = function() {
             var size = document.getElementsByTagName('span').length;
             for(var i=0;i<size;i++){
@@ -73,6 +73,23 @@ function($scope, $http) {
             }
             document.getElementsByTagName('result')[0].innerHTML = ' ';
         }
+        // Load the modal from the given template URL
+        $ionicModal.fromTemplateUrl('templates/answered.html', function($ionicModal) {
+            $scope.modal = $ionicModal;
+            console.log($scope.modal);
+        }, {
+            scope: $scope,
+            animation: 'slide-in-up',
+            backdropClickToClose: false,
+            hardwareBackButtonClose: false,
+            focusFirstInput: true
+        });
+        $scope.openModal = function() {
+            $scope.modal.show();
+        };
+        $scope.closeModal = function() {
+            $scope.modal.hide();
+        };
     })
 .controller('Exit',
 function($scope,$ionicPopup,$state) {
