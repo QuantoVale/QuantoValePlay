@@ -4,21 +4,21 @@
             <div class="logo icon-profile text-center">
                 <img src="img/ionic.png">
                 <h1>
-                    <font color="white">Bem-vindo,</font>
+                  <font color="white">Bem-vindo,</font>
                 </h1>
             </div>
             <h2 class="color-font">usuário não cadastrado!</h2>
         </div>
-        <div ng-if="isAuthenticated()">
-            <div class="logo icon-profile text-center" ng-controller="ProfileCtrl">
-                <img class="circular"ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
+        <div ng-if="isAuthenticated()" ng-controller="HomeCtrl">
+            <div class="logo icon-profile text-center">
+                <img class="circular" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
                 <h1>
-                    <font color="white">Bem-vindo,</font>
+                  <font color="white">Bem-vindo,</font>
                 </h1>
                 <h2 class="color-font">{{user.name}}!</h2>
             </div>
         </div>
-        <button ui-sref="theme.theme" class="opcoes1 button button-full button-positive icon-left ion-plus">
+        <button ui-sref="theme.theme" ng-click="GetID(5)" class="opcoes1 button button-full button-positive icon-left ion-plus">
             Novo Jogo
         </button>
         <button ui-sref="leaderboard.leaderboard" class="opcoes2 button button-full button-calm icon-left ion-navicon">
