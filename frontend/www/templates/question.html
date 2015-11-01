@@ -6,13 +6,11 @@
             </h4>
         </div>
         <ul class="list "ng-repeat="val in values.val" ng-controller="Answer">
-            <div class"centeredThings" ng-controller="Answer" ng-click = "showAlert()">
             <li class="center">
                 <a ng-click="compare({{val}},{{values.trueval}})" id="button2">
                 <span>R$ {{val}}</span>
                 </a>
             </li>
-        </div>
         </ul>
         <button class="button button-full button-clear">
             <result></result>
@@ -20,7 +18,7 @@
     </ion-content>
 </ion-view>
 <div class="tabs tabs-icon-top tabs-balanced">
-    <a class="tab-item" ng-controller = "Exit" ng-click = "encerrar()">
+    <a ui-sref="endgame.endgame" class="tab-item" ng-controller="Answer" ng-click="pular()">
     <i class="icon ion-ios-close-empty"></i>
         Encerrar
     </a>
