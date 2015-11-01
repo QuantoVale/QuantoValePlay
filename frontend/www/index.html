@@ -27,7 +27,7 @@
                     <img ng-src="img/ionic.png" />
                     <h2>Usuário não cadastrado!</h2>
                 </div>
-                <div ng-if="isAuthenticated()" class="item item-avatar"ng-controller="ProfileCtrl">
+                <div ng-if="isAuthenticated()" class="item item-avatar"ng-controller="HomeCtrl">
                     <img ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=400&height=400" />
                     <h2>{{user.name}}</h2>
                 </div>
@@ -40,7 +40,7 @@
             </ion-side-menu>
             <ion-side-menu-content>
                 <!-- Left menu content -->
-                <ion-pane ng-controller="LeftSideMenu">
+                <ion-pane ng-controller="HomeCtrl">
                     <ion-header-bar class="bar bar-header bar-balanced">
                         <button class="button button-icon icon ion-navicon" ng-click="toggleLeft()"></button>
                     </ion-header-bar>
