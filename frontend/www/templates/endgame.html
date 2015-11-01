@@ -11,7 +11,7 @@
             10000
             </button>
         </div>
-        <div ng-if="isAuthenticated()" class="logo text-center" ng-controller="ProfileCtrl" id="polaroid">
+        <div ng-if="isAuthenticated()" class="logo text-center" ng-controller="HomeCtrl" id="polaroid">
             <figure class="center">
                 <img class="displayed" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=200&height=200" width="175" height="175" alt="An old tree" />
                 <figcaption>{{user.name}}</figcaption>

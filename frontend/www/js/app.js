@@ -34,6 +34,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
             templateUrl: 'templates/menu.html',
             controller: 'AppCtrl'
         })
+
         .state('start.start', {
             url: '/start',
             views: {
@@ -95,7 +96,8 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
             views: {
                 'question': {
                     templateUrl: 'templates/question.html',
-                    controller: 'JumpQuestion'
+                    controller: 'Answer'
+
                 }
             }
         });
