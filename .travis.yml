@@ -1,10 +1,11 @@
 language: ruby
 
-before_script: rake db:migrate RAILS_ENV=test
-  
+before_script:
+  - rake db:migrate RAILS_ENV=test
+
 
 script:
-  -rake spec
+  - rake spec
 
 rvm:
   - 2.2.0
@@ -17,3 +18,4 @@ branches:
 
   - master
   - devel
+  - US14#17
