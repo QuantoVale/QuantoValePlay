@@ -1,8 +1,6 @@
 angular.module('Score', [])
 
-
-.factory('ScoreURL', function($resource)
-{
+.factory('ScoreURL', function($resource){
   return $resource("http://localhost:3000/contratos:id.json");
 })
 
@@ -11,10 +9,8 @@ angular.module('Score', [])
 var score = 0;
 
   return{
-      buttonPress: function(){
-        alert(score +=10);
-      }
-
-
+     getScore: function(){
+        return score +=50;
+    }
   }
 }])

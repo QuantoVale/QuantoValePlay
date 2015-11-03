@@ -1,18 +1,10 @@
 <div class="modal">
-    <header class="bar bar-header bar-positive">
-        <div class="button button-clear" ng-click="closeModal()">
-            <span class="icon ion-close"></span>
-        </div>
-    </header>
-    <content has-header="true" padding="true">
+    <content has-header="true">
         <ion-view>
-            <ion-content class="full-image">
-                <img src="ion-checkmark-round">
-            </ion-content>
-            <button ng-click="jump(); pular(); closeModal()"class="button button-full button-positive">
+            <button ng-click="jump(); clean(); closeModal()"class="login1 button button-full button-positive">
                 Proxima Questão
             </button>
-            <button class="opcoes2 button button-full button-calm">
+            <button ng-click="encerrar(); clean(); closeModal()"class="opcoes2 button button-full button-calm">
                 Encerrar Partida
             </button>
         </ion-view>

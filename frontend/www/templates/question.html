@@ -5,7 +5,7 @@
                 <font color="white">Quanto vale: {{values.ask}}?</font>
             </h4>
         </div>
-        <ul class="list "ng-repeat="val in values.val track by $index" ng-controller="Answer">
+        <ul class="list "ng-repeat="val in values.val track by $index">
             <li class="center">
                 <a ng-click="openModal(); compare({{val}}, {{values.trueval}}, {{$index}})" id="button2">
                 <span>R$ {{val}}</span>
@@ -17,20 +17,12 @@
         </button>
     </ion-content>
 </ion-view>
-
 <div class="tabs tabs-icon-top tabs-balanced">
-
-        Encerrar
-    </a>
-    <a class="tab-item" ng-click = "jump()">
-
-<div class="tabs tabs-icon-top tabs-balanced" ng-controller="Answer">
-    <a ui-sref="endgame.endgame" class="tab-item" ng-click="closeModal(); jump()">
+    <a class="tab-item" ng-click="encerrar(); closeModal(); jump(); clean()">
     <i class="icon ion-ios-close-empty"></i>
         Encerrar
     </a>
-    <a class="tab-item" ng-click = "pular()">
-
+    <a class="tab-item" ng-click = "jump(); clean()">
     <i class="icon ion-forward" ></i>
         Pular
     </a>
