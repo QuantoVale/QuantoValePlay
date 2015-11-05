@@ -28,9 +28,15 @@ angular.module('starter.controllers', ['callRails', 'Score'])
                 };
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
+                $scope.certa = function(){
+                    return true;
+                }
             } else {
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
+                $scope.certa = function(){
+                    return false;
+                }
             }
             var size = document.getElementsByTagName('li').length;
             for(var i=0;i<size;i++){
@@ -102,7 +108,7 @@ angular.module('starter.controllers', ['callRails', 'Score'])
         }
     })
 
-    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB) {
+    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate) {
         $scope.showAlert = function() {
             var alertPopup = $ionicPopup.alert({
                 title: 'Erro!',

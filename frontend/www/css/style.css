@@ -29,6 +29,11 @@
     background-position: center;
     align-items: center;
 }
+.modalNew{
+    margin-top: 100%;
+    margin-left: 5%;
+    width: 90%%;
+}
 
 figure, figcaption {
 display: block;
@@ -149,6 +154,9 @@ position:relative; /*required to make PIE work*/
     margin-top: 1%;
 
 }
+.right{
+    margin-left: 2.5%;
+}
 .enter{
     margin-top: 10%;
     margin-left: 0%;
@@ -185,6 +193,10 @@ h2{
     text-align: center;
 }
 
+h5{
+    color: white;
+    text-align: center;
+}
 .color-font{
     color: white;
 }
