@@ -11,11 +11,14 @@
         </div>
         <div ng-if="isAuthenticated()" ng-controller="HomeCtrl">
             <div class="logo icon-profile text-center">
-                <img class="circular" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
-                <h1>
-                  <font color="white">Bem-vindo,</font>
-                </h1>
-                <h2 class="color-font">{{user.name}}!</h2>
+                <form ng-submit ="newPlayer()">
+                    <img class="circular" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
+                    <h1>
+                      <font color="white">Bem-vindo,</font>
+                    </h1>
+                    <h2 class="color-font" >{{user.name}}!</h2>
+                    <input type="text" ng-model= "user.id" class="form-control"/>
+                </form>
             </div>
         </div>
         <button ui-sref="theme.theme" ng-click="GetID(5)" class="opcoes1 button button-full button-positive icon-left ion-plus">
