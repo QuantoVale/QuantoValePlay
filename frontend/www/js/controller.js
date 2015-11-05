@@ -18,22 +18,18 @@ angular.module('starter.controllers', ['callRails', 'Score'])
     .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate) {
         $scope.compare = function(x, y, id) {
             var size = document.getElementsByTagName('span').length;
-
+            var score = ScoreEntry.getScore();
             if (x === y) {
-                $scope.showAlert = function(){
-                    var alertPopup = $ionicPopup.alertPopup({
-                        title: 'Sua Pontuação',
-                        template: ScoreEntry.getScore()
-                    });
-                };
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
+                document.getElementsByTagName('result')[0].innerHTML = score;
                 $scope.certa = function(){
                     return true;
                 }
             } else {
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
+                document.getElementsByTagName('result')[0].innerHTML = score;
                 $scope.certa = function(){
                     return false;
                 }
