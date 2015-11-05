@@ -20,17 +20,34 @@ angular.module('starter.controllers', ['callRails', 'Score'])
             var size = document.getElementsByTagName('span').length;
 
             if (x === y) {
-                $scope.showAlert = function(){
-                    var alertPopup = $ionicPopup.alertPopup({
-                        title: 'Sua Pontuação',
-                        template: ScoreEntry.getScore()
-                    });
-                };
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
+                var answer = ScoreEntry.getTrue();
+                if ( answer <= 3){
+                  var score = ScoreEntry.getScore();
+                }
+                else if ( answer > 3){
+                  score = ScoreEntry.getBonus();
+                }
+                document.getElementsByTagName('result')[0].innerHTML = score;
+                $scope.certa = function(){
+                    return true;
+                }
             } else {
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
+                var answer = ScoreEntry.getAnswer();
+                if (answer <= 3){
+                  var score = ScoreEntry.resetScore();
+                }
+                else if ( answer > 3){
+                  answer = ScoreEntry.getFalse();
+                  score =  ScoreEntry.getScore();
+                }
+                document.getElementsByTagName('result')[0].innerHTML = score;
+                $scope.certa = function(){
+                    return false;
+                }
             }
             var size = document.getElementsByTagName('li').length;
             for(var i=0;i<size;i++){
@@ -102,7 +119,7 @@ angular.module('starter.controllers', ['callRails', 'Score'])
         }
     })
 
-    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB) {
+    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate) {
         $scope.showAlert = function() {
             var alertPopup = $ionicPopup.alert({
                 title: 'Erro!',
