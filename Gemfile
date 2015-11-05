@@ -42,3 +42,7 @@ gem 'httparty', '~> 0.13.5'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'coveralls', require: false
+
+gem 'metric_fu', '~> 4.12'
