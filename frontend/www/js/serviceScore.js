@@ -10,7 +10,10 @@ var score = 0;
 
   return{
      getScore: function(){
-        return score +=50;
-    }
+        return score += 50;
+    },
+    resetScore: function(){
+       return score += 0;
+   }
   }
 }])
