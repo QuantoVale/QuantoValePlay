@@ -1,5 +1,44 @@
-angular.module('starter.controllers', ['callRails', 'Score'])
+angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
     .controller('AppCtrl', function($scope, $ionicModal, $timeout) {})
+
+
+
+.factory("Players", function($resource) {
+  return $resource("http://localhost:3000/player",{id: '@id'},
+  {
+    index:   { method: 'GET', isArray: true, responseType: 'json' },
+    update:  { method: 'PUT', responseType: 'json' }
+  });
+})
+
+
+.controller("PlayersController", function($scope, Players, $http) {
+  var url = "http://localhost:3000/player"
+
+$http.get(url).success(function(data){
+    console.log(data);
+    alert("Foi");
+ }).error(function(erro){
+     alert("Show  de Bolda");
+ })
+  var newVisitor = {
+    name: "Pedro",
+    idFb: 451,
+    score: 100
+  };
+
+  $scope.visitors =  newVisitor;
+
+  Players.save(newVisitor);
+
+
+
+})
+
+
+
+
+
 
 
     .controller("ContractsController",

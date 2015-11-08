@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150919174006) do
+ActiveRecord::Schema.define(version: 20151108000512) do
 
   create_table "contratos", force: true do |t|
     t.string   "identificadorContrato"
@@ -30,6 +30,14 @@ ActiveRecord::Schema.define(version: 20150919174006) do
     t.string   "valorInicial"
     t.string   "aditivosContratos"
     t.string   "eventosContratos"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "players", force: true do |t|
+    t.string   "name"
+    t.integer  "idFb"
+    t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

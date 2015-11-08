@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers'])
+angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers','ngResource'])
 
 
 
@@ -12,6 +12,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         }
     });
 })
+
 
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -72,6 +73,23 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
                 }
             }
         })
+        .state('add', {
+            abstract: true,
+            templateUrl: 'templates/add.html',
+            controller: 'PlayersController'
+        })
+        .state('add.add', {
+            url: '/add',
+            views: {
+                'add': {
+                    templateUrl: 'templates/add.html',
+                    controller: 'PlayersController'
+                }
+            }
+        })
+
+
+
         .state('endgame', {
             abstract: true,
             templateUrl: 'templates/menu.html',
