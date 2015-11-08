@@ -17,7 +17,8 @@
                       <font color="white">Bem-vindo,</font>
                     </h1>
                     <h2 class="color-font" >{{user.name}}!</h2>
-                    <input type="text" ng-model= "user.id" class="form-control"/>
+                    <input  type="hidden" name="player_name" ng-model="user.name" />
+                <input type="hidden" name="player_name" ng-model="user.id" />
                 </form>
             </div>
         </div>
@@ -27,7 +28,8 @@
         <button ui-sref="leaderboard.leaderboard" class="opcoes2 button button-full button-calm icon-left ion-navicon">
             Maiores Pontuações
         </button>
-        <button ui-sref="add.add" class="opcoes2 button button-full button-calm icon-left ion-navicon">
+
+        <button ng-click="add()"  >
             Cadastrar
         </button>
 

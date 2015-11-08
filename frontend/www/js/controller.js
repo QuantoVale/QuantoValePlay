@@ -17,10 +17,11 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
 
 $http.get(url).success(function(data){
     console.log(data);
-    alert("Foi");
+    alert("Logado com Sucesso");
  }).error(function(erro){
-     alert("Show  de Bolda");
+     alert("Erro ao logar");
  })
+
   var newVisitor = {
     name: "Pedro",
     idFb: 451,
@@ -141,7 +142,19 @@ $http.get(url).success(function(data){
         }
     })
 
-    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB) {
+    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, Players) {
+
+        $scope.add =function(){
+        var newPlayer = {
+          name: $scope.user.name,
+          idFb: $scope.user.id,
+          score: $scope.user.score
+        };
+
+        console.log(newPlayer);
+        Players.save(newPlayer);
+      }
+
         $scope.showAlert = function() {
             var alertPopup = $ionicPopup.alert({
                 title: 'Erro!',
