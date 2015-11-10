@@ -1,4 +1,4 @@
-angular.module('callRails', [])
+angular.module('callRails', ['ngResource'])
 
 .constant('CALL_RAILS', {
   url: "http://0.0.0.0:3000/contratos/"

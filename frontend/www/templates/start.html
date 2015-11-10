@@ -11,11 +11,15 @@
         </div>
         <div ng-if="isAuthenticated()" ng-controller="HomeCtrl">
             <div class="logo icon-profile text-center">
-                <img class="circular" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
-                <h1>
-                  <font color="white">Bem-vindo,</font>
-                </h1>
-                <h2 class="color-font">{{user.name}}!</h2>
+                <form ng-submit ="newPlayer()">
+                    <img class="circular" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
+                    <h1>
+                      <font color="white">Bem-vindo,</font>
+                    </h1>
+                    <h2 class="color-font" >{{user.name}}!</h2>
+                    <input  type="hidden" name="player_name" ng-model="user.name" />
+                <input type="hidden" name="player_name" ng-model="user.id" />
+                </form>
             </div>
         </div>
         <button ui-sref="theme.theme" ng-click="GetID(5)" class="opcoes1 button button-full button-positive icon-left ion-plus">
@@ -24,6 +28,11 @@
         <button ui-sref="leaderboard.leaderboard" class="opcoes2 button button-full button-calm icon-left ion-navicon">
             Maiores Pontuações
         </button>
+
+        <button ng-click="add()"  >
+            Cadastrar
+        </button>
+
     </ion-content>
 </ion-view>
 <div class="bar bar-footer bar-clear">

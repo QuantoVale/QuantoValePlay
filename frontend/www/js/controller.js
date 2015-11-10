@@ -1,6 +1,45 @@
-angular.module('starter.controllers', ['callRails', 'Score'])
+angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
     .controller('AppCtrl', function($scope, $ionicModal, $timeout) {})
 
+
+
+    .factory("Players", function($resource) {
+        return $resource("http://localhost:3000/player",{id: '@id'},{
+            index: {
+                method: 'GET',
+                isArray: true,
+                responseType: 'json'
+            },
+            update: {
+                method: 'PUT',
+                responseType: 'json'
+            }
+        });
+    })
+
+
+    .controller("PlayersController",
+        function($scope, Players, $http) {
+            var url = "http://localhost:3000/player"
+
+            $http.get(url).success(function(data){
+            console.log(data);
+                alert("Logado com Sucesso");
+            })
+            .error(function(erro){
+                alert("Erro ao logar");
+            })
+
+            var newVisitor = {
+            name: "Pedro",
+            idFb: 451,
+            score: 100
+            };
+
+            $scope.visitors =  newVisitor;
+
+            Players.save(newVisitor);
+        })
 
     .controller("ContractsController",
         function($scope, $http) {
@@ -105,7 +144,19 @@ angular.module('starter.controllers', ['callRails', 'Score'])
         }
     })
 
-    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate) {
+    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate, Players) {
+
+        $scope.add =function(){
+        var newPlayer = {
+          name: $scope.user.name,
+          idFb: $scope.user.id,
+          score: $scope.user.score
+        };
+
+        console.log(newPlayer);
+        Players.save(newPlayer);
+      }
+
         $scope.showAlert = function() {
             var alertPopup = $ionicPopup.alert({
                 title: 'Erro!',
