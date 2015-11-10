@@ -60,7 +60,14 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
             if (x === y) {
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
-                var score = ScoreEntry.getScore();
+                var answer = ScoreEntry.getTrue();
+                if ( answer <= 3){
+                  var score = ScoreEntry.getScore();
+                }
+                else if ( answer > 3){
+                  score = ScoreEntry.getBonus();
+                }
+
                 document.getElementsByTagName('result')[0].innerHTML = score;
                 $scope.certa = function(){
                     return true;
@@ -68,7 +75,16 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
             } else {
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
-                var score = ScoreEntry.resetScore();
+
+                var answer = ScoreEntry.getAnswer();
+                if (answer <= 3){
+                  var score = ScoreEntry.resetScore();
+                }
+                else if ( answer > 3){
+                  answer = ScoreEntry.getFalse();
+                  score =  ScoreEntry.getScore();
+                }
+
                 document.getElementsByTagName('result')[0].innerHTML = score;
                 $scope.certa = function(){
                     return false;
@@ -156,6 +172,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
         console.log(newPlayer);
         Players.save(newPlayer);
       }
+
 
         $scope.showAlert = function() {
             var alertPopup = $ionicPopup.alert({
