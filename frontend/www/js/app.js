@@ -69,7 +69,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
             views: {
                 'leaderboard': {
                     templateUrl: 'templates/leaderboard.html',
-                    controller: 'HomeCtrl'
+                    controller: 'LeaderboardCtrl'
                 }
             }
         })

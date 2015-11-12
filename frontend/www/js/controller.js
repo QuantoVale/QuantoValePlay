@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
+angular.module('starter.controllers', ['callRails', 'callPlayer','Score','ngResource'])
     .controller('AppCtrl', function($scope, $ionicModal, $timeout) {})
 
 
@@ -156,6 +156,21 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                 console.log(ValuesService.getPreviousId);
                 console.log(response.data);
                 $scope.values = response.data;
+            })
+        }
+    })
+
+    .controller('LeaderboardCtrl', function($scope, PlayerService) {
+        PlayerService.buttonPress().then(function(response) {
+             console.log(ValuesService.getPreviousId);
+             console.log(response.data);
+             $scope.players = response.data;
+         })
+        $scope.nextPlayer = function(){
+           PlayerService.buttonPress().then(function(response) {
+                console.log(PlayerService.getPreviousId);
+                console.log(response.data);
+                $scope.players = response.data;
             })
         }
     })
