@@ -22,14 +22,21 @@ var bonus = 0;
        return answer += 1;
     },
     getFalse: function(){
-       return answer -= 4;
+       return answer = 0;
     },
-    getAnswer: function(){
-      return answer += 0;
+    getBonus3: function(){
+      return bonus = 100;
     },
-    getBonus: function(){
-      return bonus += 2*score;
-    }
+    getBonus6: function(){
+      return bonus = 200;
+    },
+    getBonus9: function(){
+      return bonus = 400;
+    },
+    getBonusTotal: function(){
+      return score = bonus + score;
+    },
+    
   }
 
 

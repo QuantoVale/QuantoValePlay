@@ -60,15 +60,27 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
             if (x === y) {
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
-                var answer = ScoreEntry.getTrue();
-                if ( answer <= 3){
-                  var score = ScoreEntry.getScore();
-                }
-                else if ( answer > 3){
-                  score = ScoreEntry.getBonus();
-                }
 
+                var answer = ScoreEntry.getTrue();
+
+                if ( answer < 3){
+                  var score = ScoreEntry.getScore();
+                  var bonus = 50;
+                }
+                else if ( answer >= 3 && answer < 6 ){
+                  bonus = ScoreEntry.getBonus3();
+                  score = ScoreEntry.getBonusTotal();
+                }
+                else if ( answer >= 6 && answer < 9 ){
+                  bonus = ScoreEntry.getBonus6();
+                  score = ScoreEntry.getBonusTotal();
+                }
+                else if ( answer >= 9 ){
+                  bonus = ScoreEntry.getBonus9();
+                  score = ScoreEntry.getBonusTotal()
+                }
                 document.getElementsByTagName('result')[0].innerHTML = score;
+                document.getElementsByTagName('question')[0].innerHTML = bonus;
                 $scope.certa = function(){
                     return true;
                 }
@@ -76,16 +88,11 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
 
-                var answer = ScoreEntry.getAnswer();
-                if (answer <= 3){
-                  var score = ScoreEntry.resetScore();
-                }
-                else if ( answer > 3){
-                  answer = ScoreEntry.getFalse();
-                  score =  ScoreEntry.getScore();
-                }
+                answer = ScoreEntry.getFalse();
+                score = ScoreEntry.resetScore();
 
                 document.getElementsByTagName('result')[0].innerHTML = score;
+                document.getElementsByTagName('question')[0].innerHTML = 0;
                 $scope.certa = function(){
                     return false;
                 }
