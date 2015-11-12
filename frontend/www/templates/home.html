@@ -4,15 +4,15 @@
         <div class="animated bounceInLeft">
             <img class="full-image" src="img/quantovalecabuloso.png">
         </div>
-        <div ng-if="!isAuthenticated()">
+        <div class="animated swing" ng-if="!isAuthenticated()">
             <button ng-click="authenticate('facebook')" class="login1 button button-full button-royal icon-left ion-social-facebook">
                 Acessar com Facebook
             </button>
-            <button ng-click="authenticate('google')" class="login2 button button-full button-assertive  icon-left ion-social-googleplus">
+            <button ng-click="authenticate('google')" class="login2 button button-full button-assertive icon-left ion-social-googleplus">
                 Acessar com Google+
             </button>
         </div>
-        <div ng-if="isAuthenticated()">
+        <div ng-if="isAuthenticated()" class="animated swing">
             <div class="card">
                 <div class="item item-text text-center">
                     Você está logado
@@ -22,7 +22,7 @@
                 Log Out
             </button>
         </div>
-        <button  ui-sref="start.start" class="enter button button-full button-clear icon-right ion-chevron-right button-clear button-light">
+        <button  ui-sref="start.start" class="enter button button-full button-clear icon-right ion-chevron-right button-clear button-light animated fadeInLeft">
             Entrar
         </button>
     </ion-content>
