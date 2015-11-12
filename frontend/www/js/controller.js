@@ -33,7 +33,12 @@ $http.get(url).success(function(data){
   Players.save(newVisitor);
 
 
+  var url = "http://localhost:3000/player";
 
+  $http.get(url).success(function (data){
+      $scope.players = data;
+      console.log(data);
+  });
 })
 
 
@@ -44,7 +49,7 @@ $http.get(url).success(function(data){
 
     .controller("ContractsController",
         function($scope, $http) {
-            var url = "http://localhost:3000/contratos/index";
+            var url = "http://localhost:3000/contratos";
 
 
             $http.get(url).success(function(data) {
@@ -142,7 +147,7 @@ $http.get(url).success(function(data){
         }
     })
 
-    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, Players) {
+    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, Players,$http) {
 
         $scope.add =function(){
         var newPlayer = {
@@ -177,6 +182,7 @@ $http.get(url).success(function(data){
                     })
                 });
         };
+
 
         $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleLeft();

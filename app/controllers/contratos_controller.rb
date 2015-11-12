@@ -18,6 +18,7 @@ class ContratosController < ApplicationController
     end
     return value_validate
   end
+  #.flatten junta .shuffle mistura
 
   def applying_flatten array_value
     return array_value.flatten!
@@ -27,19 +28,32 @@ class ContratosController < ApplicationController
     return array_question.shuffle
   end
 
-  def show
-      @contrato = Contrato.find(params["id"])
-      values_random = Array.new(3)
+  def generateRanking
 
-      value_true = Float(@contrato.valorInicial).round(0)
+      player = Player.all
+      player.each do |user|
+          puts(user.name)
 
-      for i in 0..2
-          values_random[i] = validate_values_aleatory(values_aleatory(value_true).round(0),value_true)
       end
-      #.flatten junta .shuffle mistura
-      array_question = {"ask"=>@contrato.objeto.capitalize,
+  end
+
+  def service
+
+    @contrato = Contrato.find(params["id"])
+    values_random = Array.new(3)
+    value_true = Float(@contrato.valorInicial).round(0)
+
+    for i in 0..2
+      values_random[i] = validate_values_aleatory(values_aleatory(value_true).round(0),value_true)
+    end
+
+    return array_question = {"ask"=>@contrato.objeto.capitalize,
         "val"=>applying_shuffle(applying_flatten(merge(values_random, value_true))), "trueval"=>value_true}
 
-      render json:array_question
+  end
+
+  def show
+      generateRanking()
+      render json:service
   end
 end
