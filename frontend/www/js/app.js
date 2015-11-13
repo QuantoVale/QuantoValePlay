@@ -76,14 +76,14 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('add', {
             abstract: true,
             templateUrl: 'templates/add.html',
-            controller: 'PlayersController'
+            PlayersController: 'PlayersController'
         })
         .state('add.add', {
             url: '/add',
             views: {
                 'add': {
                     templateUrl: 'templates/add.html',
-                    controller: 'PlayersController'
+                    PlayersController: 'PlayersController'
                 }
             }
         })
