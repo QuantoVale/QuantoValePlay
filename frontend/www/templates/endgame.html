@@ -7,24 +7,11 @@
             <h2>
                 <font color="white">Pontuação:</font>
             </h2>
-            <button class="button button-full button-positive icon-left ion-star">
-            10000
+            <button class="button button-full button-positive icon-left ion-star" >
+                <score></score> pontos
             </button>
-        </div>
-        <div ng-if="isAuthenticated()" class="logo text-center" ng-controller="HomeCtrl" id="polaroid">
-            <figure class="center">
-                <img class="displayed" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=200&height=200" width="175" height="175" alt="An old tree" />
-                <figcaption>{{user.name}}</figcaption>
-            </figure>
-            <br>
-            <h2>
-                <font color="white">Pontuação:</font>
-            </h2>
-            <button class="button button-full button-positive icon-left ion-star">
-            10000
-            </button>
-        </div>
-    </ion-content>
+         </div>
+      </ion-content>
 </ion-view>
 <div class="tabs tabs-icon-top tabs-balanced">
     <a class="tab-item" ui-sref="start.start">

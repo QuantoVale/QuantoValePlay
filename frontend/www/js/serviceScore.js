@@ -9,6 +9,7 @@ angular.module('Score', [])
 var score = 0;
 var answer = 0;
 var bonus = 0;
+var total = 0;
 
   return{
      getScore: function(){
@@ -16,13 +17,15 @@ var bonus = 0;
     },
     resetScore: function(){
        return score += 0;
-
     },
     getTrue: function(){
        return answer += 1;
     },
     getFalse: function(){
        return answer = 0;
+    },
+    getTotalAnswer(){
+      return total += 1;
     },
     getBonus3: function(){
       return bonus = 100;
@@ -36,7 +39,7 @@ var bonus = 0;
     getBonusTotal: function(){
       return score = bonus + score;
     },
-    
+
   }
 
 

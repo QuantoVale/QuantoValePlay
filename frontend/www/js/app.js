@@ -100,7 +100,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
             views: {
                 'endgame': {
                     templateUrl: 'templates/endgame.html',
-                    controller: 'HomeCtrl'
+                    controller: 'Answer'
                 }
             }
         })

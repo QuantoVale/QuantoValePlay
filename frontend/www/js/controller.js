@@ -55,6 +55,14 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
         })
 
     .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate) {
+        var total = 0;
+        $scope.end = function(){
+          if (total == 10){
+            $state.go('endgame.endgame');
+            console.log("Fim da rodada");
+          }else
+            console.log("Questões restantes = "+(10-total));
+        }
         $scope.compare = function(x, y, id) {
             var size = document.getElementsByTagName('span').length;
             if (x === y) {
@@ -62,6 +70,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
 
                 var answer = ScoreEntry.getTrue();
+                total = ScoreEntry.getTotalAnswer();
 
                 if ( answer < 3){
                   var score = ScoreEntry.getScore();
@@ -84,24 +93,39 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                 $scope.certa = function(){
                     return true;
                 }
-            } else {
+
+              } else {
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
 
+                total = ScoreEntry.getTotalAnswer();
                 answer = ScoreEntry.getFalse();
                 score = ScoreEntry.resetScore();
+
 
                 document.getElementsByTagName('result')[0].innerHTML = score;
                 document.getElementsByTagName('question')[0].innerHTML = 0;
                 $scope.certa = function(){
                     return false;
                 }
+
+
+
             }
+
             var size = document.getElementsByTagName('li').length;
             for(var i=0;i<size;i++){
                 document.getElementsByTagName('li')[i].style.pointerEvents = "none";
             }
-        }
+
+
+        };
+
+        $scope.score = function(){
+          var score;
+          score = ScoreEntry.getBonusTotal();
+          document.getElementsByTagName('score')[0].innerHTML = score;
+        };
 
         $scope.clean = function() {
             var size = document.getElementsByTagName('span').length;
@@ -115,32 +139,36 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
             }
             document.getElementsByTagName('result')[0].innerHTML = ' ';
         }
-        $ionicModal.fromTemplateUrl('templates/answered.html', function($ionicModal) {
-            $scope.modal = $ionicModal;
-            console.log($scope.modal);
-        }, {
-            scope: $scope,
-            animation: 'slide-in-up',
-            backdropClickToClose: false,
-            hardwareBackButtonClose: false,
-            focusFirstInput: true
+
+
+          $ionicModal.fromTemplateUrl('templates/answered.html', function($ionicModal) {
+              $scope.modal = $ionicModal;
+              console.log($scope.modal);
+          }, {
+              scope: $scope,
+              animation: 'slide-in-up',
+              backdropClickToClose: false,
+              hardwareBackButtonClose: false,
+              focusFirstInput: true
         });
-        $scope.openModal = function() {
-            $scope.modal.show();
-        };
-        $scope.closeModal = function() {
-            $scope.modal.hide();
-        };
-        $scope.encerrar = function(){
-          var confirmPopup = $ionicPopup.confirm({
-            title: 'Fim da partida',
-            template: 'Deseja realmente encerrar a partida?'
+
+          $scope.openModal = function() {
+              $scope.modal.show();
+          };
+          $scope.closeModal = function() {
+              $scope.modal.hide();
+          };
+          $scope.encerrar = function(){
+            var confirmPopup = $ionicPopup.confirm({
+              title: 'Fim da partida',
+              template: 'Deseja realmente encerrar a partida?'
           });
+
 
           confirmPopup.then(function(res){
 
             if(res){
-              $state.go('start.start');
+              $state.go('endgame.endgame');
               console.log('Encerrar');
             }
             else

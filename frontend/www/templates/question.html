@@ -7,7 +7,7 @@
         </div>
         <ul class="list "ng-repeat="val in values.val track by $index">
             <li class="center">
-                <a ng-click="openModal(); compare({{val}}, {{values.trueval}}, {{$index}})" id="button2">
+                <a ng-click="openModal(); end(); compare({{val}}, {{values.trueval}}, {{$index}})" id="button2">
                 <span>R$ {{val}}</span>
                 </a>
             </li>
