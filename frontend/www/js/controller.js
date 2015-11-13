@@ -14,19 +14,6 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
         });
     })
 
-    .controller("ContractsController",
-        function($scope, $http) {
-            var url = "http://localhost:3000/contratos/index";
-
-
-            $http.get(url).success(function(data) {
-                console.log(data);
-                $scope.questions = data;
-            }).error(function(error) {
-                console.log("Server side error");
-            });
-        })
-
     .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate) {
         $scope.compare = function(x, y, id) {
             var size = document.getElementsByTagName('span').length;
