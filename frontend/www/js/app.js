@@ -19,7 +19,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('app', {
             abstract: true,
             templateUrl: 'templates/menu.html',
-            controller: 'AppCtrl'
+            AppController: 'AppCtrl'
         })
         .state('app.home', {
             url: '/',
@@ -33,7 +33,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('start', {
             abstract: true,
             templateUrl: 'templates/menu.html',
-            controller: 'AppCtrl'
+          AppController: 'AppCtrl'
         })
 
         .state('start.start', {
@@ -48,7 +48,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('theme', {
             abstract: true,
             templateUrl: 'templates/menu.html',
-            controller: 'AppCtrl'
+          AppController: 'AppCtrl'
         })
         .state('theme.theme', {
             url: '/theme',
@@ -62,7 +62,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('leaderboard', {
             abstract: true,
             templateUrl: 'templates/menu.html',
-            controller: 'AppCtrl'
+            AppController: 'AppCtrl'
         })
         .state('leaderboard.leaderboard', {
             url: '/leaderboard',
@@ -93,7 +93,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('endgame', {
             abstract: true,
             templateUrl: 'templates/menu.html',
-            controller: 'AppCtrl'
+            AppController: 'AppCtrl'
         })
         .state('endgame.endgame', {
             url: '/endgame',
@@ -107,7 +107,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('question', {
             abstract: true,
             templateUrl: 'templates/menu.html',
-            controller: 'AppCtrl'
+            AppController: 'AppCtrl'
         })
         .state('question.question', {
             url: '/question',

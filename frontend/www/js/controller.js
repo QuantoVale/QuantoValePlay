@@ -1,7 +1,4 @@
 angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
-    .controller('AppCtrl', function($scope, $ionicModal, $timeout) {})
-
-
 
     .factory("Players", function($resource) {
         return $resource("http://localhost:3000/player",{id: '@id'},{
