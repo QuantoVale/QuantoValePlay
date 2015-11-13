@@ -55,26 +55,35 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
         })
 
     .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate) {
-        var total = 0;
+        var total = 1; var score = 0; var answer;
+
+        $scope.matchStart = function(){
+          score = ScoreEntry.resetScore();
+          console.log("Pontuação resetada");
+        }
+          console.log(score);
+
         $scope.end = function(){
-          if (total == 10){
-            $state.go('endgame.endgame');
-            console.log("Fim da rodada");
+            if (total == 9){
+              $state.go('endgame.endgame');
+              console.log("Fim da rodada");
           }else
-            console.log("Questões restantes = "+(10-total));
+            console.log("Questões restantes = "+(total));
         }
         $scope.compare = function(x, y, id) {
             var size = document.getElementsByTagName('span').length;
+
+
             if (x === y) {
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
 
-                var answer = ScoreEntry.getTrue();
+                answer = ScoreEntry.getTrue();
                 total = ScoreEntry.getTotalAnswer();
 
                 if ( answer < 3){
-                  var score = ScoreEntry.getScore();
-                  var bonus = 50;
+                  score = ScoreEntry.getScore();
+                  bonus = 50;
                 }
                 else if ( answer >= 3 && answer < 6 ){
                   bonus = ScoreEntry.getBonus3();
@@ -86,8 +95,10 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                 }
                 else if ( answer >= 9 ){
                   bonus = ScoreEntry.getBonus9();
-                  score = ScoreEntry.getBonusTotal()
+                  score = ScoreEntry.getBonusTotal();
                 }
+                console.log("Pontuação = "+score);
+                console.log(total);
                 document.getElementsByTagName('result')[0].innerHTML = score;
                 document.getElementsByTagName('question')[0].innerHTML = bonus;
                 $scope.certa = function(){
@@ -100,25 +111,20 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
 
                 total = ScoreEntry.getTotalAnswer();
                 answer = ScoreEntry.getFalse();
-                score = ScoreEntry.resetScore();
+                score = ScoreEntry.falseScore();
 
-
+                console.log(total);
                 document.getElementsByTagName('result')[0].innerHTML = score;
                 document.getElementsByTagName('question')[0].innerHTML = 0;
                 $scope.certa = function(){
                     return false;
                 }
-
-
-
             }
 
             var size = document.getElementsByTagName('li').length;
             for(var i=0;i<size;i++){
                 document.getElementsByTagName('li')[i].style.pointerEvents = "none";
             }
-
-
         };
 
         $scope.score = function(){

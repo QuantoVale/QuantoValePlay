@@ -55,7 +55,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
             views: {
                 'theme': {
                     templateUrl: 'templates/theme.html',
-                    controller: 'HomeCtrl'
+                    controller: 'Answer'
                 }
             }
         })

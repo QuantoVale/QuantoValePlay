@@ -15,8 +15,11 @@ var total = 0;
      getScore: function(){
         return score += 50;
     },
-    resetScore: function(){
+    falseScore: function(){
        return score += 0;
+    },
+    resetScore: function(){
+       return score = 0;
     },
     getTrue: function(){
        return answer += 1;
@@ -26,6 +29,9 @@ var total = 0;
     },
     getTotalAnswer(){
       return total += 1;
+    },
+    resetTotalAnswer(){
+      return total = 0;
     },
     getBonus3: function(){
       return bonus = 100;
