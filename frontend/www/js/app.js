@@ -1,5 +1,4 @@
-angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers','ngResource'])
-
+var MyApp = angular.module('starter', ['ionic', 'satellizer', 'openfb','ngResource','callRails', 'Score','ngResource'])
 
 
 .run(function($ionicPlatform) {
@@ -114,7 +113,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
             views: {
                 'question': {
                     templateUrl: 'templates/question.html',
-                    controller: 'Answer'
+                    AnswerController: 'Answer'
 
                 }
             }

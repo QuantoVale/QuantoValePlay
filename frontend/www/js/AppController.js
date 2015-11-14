@@ -1,2 +1,1 @@
-angular.module('starter.controllers', [])
-    .controller('AppCtrl', function($scope, $ionicModal, $timeout) {})
+MyApp.controller('AppCtrl', function($scope, $ionicModal, $timeout) {})

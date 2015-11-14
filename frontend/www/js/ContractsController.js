@@ -1,6 +1,4 @@
-angular.module('starter.controllers', [])
-
-.controller("ContractsController",
+MyApp.controller("ContractsController",
     function($scope, $http) {
         var url = "http://localhost:3000/contratos/index";
 
