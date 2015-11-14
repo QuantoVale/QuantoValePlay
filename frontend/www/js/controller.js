@@ -3,6 +3,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
 
 
 
+
 .factory("Players", function($resource) {
   return $resource("http://localhost:3000/player",{id: '@id'},
   {
@@ -41,11 +42,43 @@ $http.get(url).success(function(data){
   });
 })
 
+    .factory("Players", function($resource) {
+        return $resource("http://localhost:3000/player",{id: '@id'},{
+            index: {
+                method: 'GET',
+                isArray: true,
+                responseType: 'json'
+            },
+            update: {
+                method: 'PUT',
+                responseType: 'json'
+            }
+        });
+    })
 
 
+    .controller("PlayersController",
+        function($scope, Players, $http) {
+            var url = "http://localhost:3000/player"
 
+            $http.get(url).success(function(data){
+            console.log(data);
+                alert("Logado com Sucesso");
+            })
+            .error(function(erro){
+                alert("Erro ao logar");
+            })
 
+            var newVisitor = {
+            name: "Pedro",
+            idFb: 451,
+            score: 100
+            };
 
+            $scope.visitors =  newVisitor;
+
+            Players.save(newVisitor);
+        })
 
     .controller("ContractsController",
         function($scope, $http) {
@@ -60,22 +93,38 @@ $http.get(url).success(function(data){
             });
         })
 
-    .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate) {
+    .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate, $timeout) {
+
+            $scope.counter = 0;
+            $scope.onTimeout = function(){
+                $scope.counter++;
+                console.log("O tempo é "+$scope.counter)
+                mytimeout = $timeout($scope.onTimeout,1000);
+            }
+            var mytimeout = $timeout($scope.onTimeout,1000);
+
+            $scope.stop = function(){
+                $timeout.cancel(mytimeout);
+            }
+
         $scope.compare = function(x, y, id) {
             var size = document.getElementsByTagName('span').length;
-
             if (x === y) {
-                $scope.showAlert = function(){
-                    var alertPopup = $ionicPopup.alertPopup({
-                        title: 'Sua Pontuação',
-                        template: ScoreEntry.getScore()
-                    });
-                };
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
+                var score = ScoreEntry.getScore();
+                document.getElementsByTagName('result')[0].innerHTML = score;
+                $scope.certa = function(){
+                    return true;
+                }
             } else {
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
+                var score = ScoreEntry.resetScore();
+                document.getElementsByTagName('result')[0].innerHTML = score;
+                $scope.certa = function(){
+                    return false;
+                }
             }
             var size = document.getElementsByTagName('li').length;
             for(var i=0;i<size;i++){
@@ -147,7 +196,7 @@ $http.get(url).success(function(data){
         }
     })
 
-    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, Players,$http) {
+    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate, Players) {
 
         $scope.add =function(){
         var newPlayer = {
