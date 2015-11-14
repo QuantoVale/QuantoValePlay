@@ -6,7 +6,7 @@ before_script:
 
 script:
   - rake spec
-  - metric_fu
+  
   
 rvm:
   - 2.2.0
