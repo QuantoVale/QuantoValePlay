@@ -1,6 +1,9 @@
 <ion-view>
+    <link href="css/animate.css" rel="stylesheet">
     <ion-content class="background">
-        <img class="full-image" src="img/logo.png">
+        <div class="animated bounceInLeft">
+            <img class="full-image" src="img/quantovalecabuloso.png">
+        </div>
         <div ng-if="!isAuthenticated()">
             <button ng-click="authenticate('facebook')" class="login1 button button-full button-royal icon-left ion-social-facebook">
                 Acessar com Facebook
