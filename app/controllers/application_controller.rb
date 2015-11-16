@@ -10,4 +10,14 @@ class ApplicationController < ActionController::Base
     @contratoFalso.valor = contratoOriginal.valor + 100
   end
 
+  def find_player( id = 0 )
+
+    assert { !id.nil? }
+    id = id.to_i
+    assert { id >= 0 }
+
+    @player= Player.find(id);
+
+  end
+
 end

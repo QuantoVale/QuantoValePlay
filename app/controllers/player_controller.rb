@@ -17,6 +17,12 @@ class PlayerController < ApplicationController
        respond_with Player.destroy(params[:id])
      end
 
+     def show
+
+      render json: Player.find(params[:id])
+     end
+
+
    private
      def visitor_params
        params.require(:player).permit(:name, :idFb, :score)
