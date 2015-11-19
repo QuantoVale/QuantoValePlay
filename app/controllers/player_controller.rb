@@ -21,6 +21,22 @@ class PlayerController < ApplicationController
        render json: Player.find(params[:id])
      end
 
+     def insertScore
+     #Selecionando qual player deve ser atualizado
+     @player =  Player.find(params[:id])
+     #Pegando o score atual do player
+     scorePlayer = getScorePlayer(params[:id]);
+     #Pegando o valor do Score passado para ser adicionado ao player
+     acertos = params[:score];
+     score = calcRecompensa(params[:score]);
+     #Somando o score atual do player ao valor ganho durante a partida
+     scoreNew = score.to_i + scorePlayer.to_i;
+     #Setando o valor do novo score no Player
+     @player.update_attribute(:score,scoreNew);
+     #Redirecionando o Player mostrando a atualização
+     render json:@player
+   end
+
       def getScorePlayer(id)
          @player =  Player.find(id);
          @player.read_attribute(:score);
@@ -28,18 +44,23 @@ class PlayerController < ApplicationController
 
       def calcRecompensa(totalAcertos)
 
-        if (totalAcertos < '3')
-          return @scoreTotal = 50;
-        elsif (totalAcertos < '6')
-          return @scoreTotal = 100;
-        elsif (totalAcertos < '9')
-          return @scoreTotal = 200;
-        else
-          return @scoreTotal = 400;
-        end
+       for i in 1..(totalAcertos.to_i)
+
+          puts(i);
+
+          if (i < 3)
+             return @scoreTotal = 50;
+           elsif (i >= 3 && i < 6)
+             return @scoreTotal = 100;
+           elsif (i >= 6 && i < 9)
+             return @scoreTotal = 200;
+           else
+             return @scoreTotal = 400;
+           end
+
+       end
 
      end
-
 
 
    private
