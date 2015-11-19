@@ -26,6 +26,19 @@ class PlayerController < ApplicationController
          @player.read_attribute(:score);
       end
 
+      def calcRecompensa(totalAcertos)
+
+        if (totalAcertos < '3')
+          return @scoreTotal = 50;
+        elsif (totalAcertos < '6')
+          return @scoreTotal = 100;
+        elsif (totalAcertos < '9')
+          return @scoreTotal = 200;
+        else
+          return @scoreTotal = 400;
+        end
+
+     end
 
 
 

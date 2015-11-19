@@ -106,8 +106,22 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                 }
 
               } else {
+
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
+
+                var i;
+
+                for ( i = 0; i <= 3; i++ ){
+
+                    if ( val === y ){
+                      document.getElementsByTagName('span')[i].style.backgroundColor = "#33cd5f";
+                      document.getElementsByTagName('span')[i].style.boxShadow = "0 8px 0 #28a54c";
+                    }
+
+
+                }
+
 
                 total = ScoreEntry.getTotalAnswer();
                 answer = ScoreEntry.getFalse();
