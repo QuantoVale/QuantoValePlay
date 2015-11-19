@@ -18,9 +18,15 @@ class PlayerController < ApplicationController
      end
 
      def show
-
-      render json: Player.find(params[:id])
+       render json: Player.find(params[:id])
      end
+
+      def getScorePlayer(id)
+         @player =  Player.find(id);
+         @player.read_attribute(:score);
+      end
+
+
 
 
    private
