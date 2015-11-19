@@ -43,22 +43,22 @@ class PlayerController < ApplicationController
       end
 
       def calcRecompensa(totalAcertos)
+        score  = 0;
 
        for i in 1..(totalAcertos.to_i)
-
-          puts(i);
-
           if (i < 3)
-             return @scoreTotal = 50;
+             score += 50;
            elsif (i >= 3 && i < 6)
-             return @scoreTotal = 100;
+              score += 100;
            elsif (i >= 6 && i < 9)
-             return @scoreTotal = 200;
+             score += 200;
            else
-             return @scoreTotal = 400;
+            score += 400;
            end
 
-       end
+        end
+        
+        return @scoreTotal = score;
 
      end
 

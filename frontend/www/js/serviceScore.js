@@ -4,6 +4,21 @@ angular.module('Score', [])
   return $resource("http://localhost:3000/contratos:id.json");
 })
 
+.factory('PlayerData',
+    function($resource){
+        return $resource("player/:id",{ id: '@id'}, {
+            index: {
+                method: 'GET',
+                isArray: true,
+                rensponseType: 'json'
+            },
+            update: {
+                method: 'POST',
+                rensponseType: 'json'
+            }
+        });
+    })
+
 .factory('ScoreEntry', [function (){
 
 var score = 0;

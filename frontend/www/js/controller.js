@@ -55,7 +55,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
         })
 
     .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate) {
-        var total = 1; var score = 0; var answer;
+        var total = 1; var score = 0; var answer = 0;
 
         $scope.matchStart = function(){
           score = ScoreEntry.resetScore();
@@ -78,26 +78,9 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
 
-                answer = ScoreEntry.getTrue();
-                total = ScoreEntry.getTotalAnswer();
+                answer++;
 
-                if ( answer < 3){
-                  score = ScoreEntry.getScore();
-                  bonus = 50;
-                }
-                else if ( answer >= 3 && answer < 6 ){
-                  bonus = ScoreEntry.getBonus3();
-                  score = ScoreEntry.getBonusTotal();
-                }
-                else if ( answer >= 6 && answer < 9 ){
-                  bonus = ScoreEntry.getBonus6();
-                  score = ScoreEntry.getBonusTotal();
-                }
-                else if ( answer >= 9 ){
-                  bonus = ScoreEntry.getBonus9();
-                  score = ScoreEntry.getBonusTotal();
-                }
-                console.log("Pontuação = "+score);
+                console.log("Acertou = "+answer);
                 console.log(total);
                 document.getElementsByTagName('result')[0].innerHTML = score;
                 document.getElementsByTagName('question')[0].innerHTML = bonus;
@@ -110,22 +93,11 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                 document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                 document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
 
-                var i;
-
-                for ( i = 0; i <= 3; i++ ){
-
-                    if ( val === y ){
-                      document.getElementsByTagName('span')[i].style.backgroundColor = "#33cd5f";
-                      document.getElementsByTagName('span')[i].style.boxShadow = "0 8px 0 #28a54c";
-                    }
-
-
+                if ( answer > 0 ){
+                  
+                  answer = 0;
                 }
 
-
-                total = ScoreEntry.getTotalAnswer();
-                answer = ScoreEntry.getFalse();
-                score = ScoreEntry.falseScore();
 
                 console.log(total);
                 document.getElementsByTagName('result')[0].innerHTML = score;
