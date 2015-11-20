@@ -175,10 +175,111 @@ angular.module('starter.controllers', ['callRails', 'callPlayer','Score','ngReso
         }
     })
 
+    .controller('AndroidLoginCtrl',
+        function($scope, $state, $q, UserService, $ionicLoading) {
+
+            var fbLoginSuccess = function(response) {
+                if (!response.authResponse){
+                    fbLoginError("Sem resposta");
+                    return;
+                }
+
+                var authResponse = response.authResponse;
+
+                getFacebookProfileInfo(authResponse)
+                .then(function(profileInfo) {
+
+                    UserService.setUser({
+                        authResponse: authResponse,
+                        userID: profileInfo.id,
+                        name: profileInfo.name,
+                        email: profileInfo.email,
+                        picture : "http://graph.facebook.com/"
+                        + authResponse.userID + "/picture?type=large"
+                    });
+
+                    $ionicLoading.hide();
+                    $state.go('start.start');
+
+                }, function(fail){
+                    console.log('Informação de login falhou', fail);
+                });
+            };
+
+            var fbLoginError = function(error){
+                console.log('fbLoginError', error);
+                $ionicLoading.hide();
+            };
+
+
+            var getFacebookProfileInfo = function (authResponse) {
+                var info = $q.defer();
+
+                facebookConnectPlugin.api('/me?fields=email,name&access_token='
+                + authResponse.accessToken, null,
+                function (response) {
+            		console.log(response);
+                    info.resolve(response);
+                },
+                function (response) {
+            		console.log(response);
+                    info.reject(response);
+                });
+
+                return info.promise;
+            };
+
+
+            $scope.facebookSignIn = function() {
+
+                facebookConnectPlugin.getLoginStatus(function(success){
+                    if(success.status === 'connected'){
+                        console.log('getLoginStatus', success.status);
+
+                        var user = UserService.getUser('facebook');
+
+                        if(!user.userID){
+                            getFacebookProfileInfo(success.authResponse)
+                            .then(function(profileInfo) {
+
+                                UserService.setUser({
+                                    authResponse: success.authResponse,
+                                    userID: profileInfo.id,
+                                    name: profileInfo.name,
+                                    email: profileInfo.email,
+                                    picture : "http://graph.facebook.com/"
+                                    + success.authResponse.userID
+                                    + "/picture?type=large"
+                                });
+
+                                $state.go('start.start');
+
+                            }, function(fail){
+                                console.log('Informação de login falhou', fail);
+                            });
+                        }else{
+                            $state.go('start.start');
+                        }
+
+                    } else {
+                        console.log('Status do login: ', success.status);
+
+                        $ionicLoading.show({
+                            template: 'Logando...'
+                        });
+
+                        facebookConnectPlugin.login(['email', 'public_profile'],
+                        fbLoginSuccess, fbLoginError);
+                    }
+                });
+            };
+        })
+
+
     .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate, Players) {
 
         $scope.add =function(){
-        var newPlayer = {
+        var newPlayer = get{
           name: $scope.user.name,
           idFb: $scope.user.id,
           score: $scope.user.score
