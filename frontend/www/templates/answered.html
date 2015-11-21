@@ -12,8 +12,11 @@
                 </div>
             </div>
             <button class="button button-full button-balanced">
-  				        <result></result> pontos
-			     </button>
+                <question></question> pontos
+            </button>
+            <button class="button button-full button-balanced">
+                Total na partida: <result></result> pontos
+            </button>
             <div class="row row-bottom right">
                 <div class="col col-50">
                     <button ng-click="encerrar(); clean(); closeModal()"class="button icon-left ion-ios-close-empty button-calm">
@@ -22,7 +25,7 @@
                 </div>
                 <div class="col col-50">
                     <button ng-click="jump(); clean(); closeModal()"class="button button-positive icon-right ion-ios-arrow-right">
-                        <h5>Proxima Questão</h5>
+                        <h5>Próxima Questão</h5>
                     </button>
                 </div>
             </div>

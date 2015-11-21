@@ -54,7 +54,7 @@ var MyApp = angular.module('starter', ['ionic', 'satellizer', 'openfb','ngResour
             views: {
                 'theme': {
                     templateUrl: 'templates/theme.html',
-                    controller: 'HomeCtrl'
+                    controller: 'Answer'
                 }
             }
         })
@@ -99,7 +99,7 @@ var MyApp = angular.module('starter', ['ionic', 'satellizer', 'openfb','ngResour
             views: {
                 'endgame': {
                     templateUrl: 'templates/endgame.html',
-                    controller: 'HomeCtrl'
+                    controller: 'Answer'
                 }
             }
         })
