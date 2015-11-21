@@ -11,7 +11,6 @@ MyApp.controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, $ionic
     Players.save(newPlayer);
   }
 
-
     $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({
             title: 'Erro!',
@@ -94,26 +93,6 @@ MyApp.controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, $ionic
                 }
 
                 var authResponse = response.authResponse;
-
-                getFacebookProfileInfo(authResponse)
-                .then(function(profileInfo) {
-
-                    PlayerService.setPlayer({
-                        authResponse: authResponse,
-                        userID: profileInfo.id,
-                        name: profileInfo.name,
-                        email: profileInfo.email,
-                        picture : "http://graph.facebook.com/"
-                        + authResponse.userID + "/picture?type=large"
-                    });
-
-                    $ionicLoading.hide();
-                    $state.go('start.start');
-
-                }, function(fail){
-                    console.log('Informação de login falhou', fail);
-                });
-            };
 
             var fbLoginError = function(error){
                 console.log('fbLoginError', error);
