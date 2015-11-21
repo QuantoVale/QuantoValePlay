@@ -68,7 +68,7 @@ var MyApp = angular.module('starter', ['ionic', 'satellizer', 'openfb','ngResour
             views: {
                 'leaderboard': {
                     templateUrl: 'templates/leaderboard.html',
-                    controller: 'HomeCtrl'
+                    controller: 'LeaderboardCtrl'
                 }
             }
         })

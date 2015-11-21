@@ -5,7 +5,7 @@
                 <font color="white">Quanto vale: {{values.ask}}?</font>
             </h4>
         </div>
-        <ul class="list "ng-repeat="val in values.val track by $index">
+        <ul class="list "ng-repeat="val in values.val">
             <li class="center">
                 <a ng-click="openModal(); end(); compare({{val}}, {{values.trueval}}, {{$index}})" id="button2">
                 <span>R$ {{val}}</span>

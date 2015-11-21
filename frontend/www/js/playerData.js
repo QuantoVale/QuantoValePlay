@@ -1,5 +1,21 @@
 .module('playerCenter', ['ngResource']);
 
+.service('PlayerService', function() {
+
+    var setPlayer = function(user_data) {
+        window.localStorage.starter_facebook_user = JSON.stringify(user_data);
+    };
+
+    var getPlayer = function(){
+        return JSON.parse(window.localStorage.starter_facebook_user || '{}');
+    };
+
+    return {
+        getPlayer: getPlayer,
+        setPlayer: setPlayer
+    };
+});
+
 .factory('PlayerData',
     function($resource){
         return $resource("player/:id",{ id: '@id'}, {

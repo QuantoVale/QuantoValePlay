@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   resource :contratos
   root :to => 'contratos#index'
-   resources :player, only: [:index, :create, :destroy,:show], defaults: {format: :json}
+
+  resources :player, only: [:index, :show, :create, :destroy], defaults: {format: :json}
+
   #get "contratos/index" => 'contratos#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
