@@ -1,4 +1,5 @@
-MyApp.controller("PlayersController",
+angular.module('starter.controllers', [])
+.controller("PlayersController",
     function($scope, Players, $http) {
         var url = "http://localhost:3000/player"
 

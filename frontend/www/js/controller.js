@@ -1,60 +1,6 @@
-MyApp.controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate, Players) {
+angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
 
-    $scope.add =function(){
-    var newPlayer = {
-      name: $scope.user.name,
-      idFb: $scope.user.id,
-      score: $scope.user.score
-    };
-
-    console.log(newPlayer);
-    Players.save(newPlayer);
-  }
-
-    $scope.showAlert = function() {
-        var alertPopup = $ionicPopup.alert({
-            title: 'Erro!',
-            template: 'Você tem que estar logado para jogar.'
-        });
-    };
-
-    $scope.authenticate = function(provider) {
-        $auth.authenticate(provider)
-            .then(function() {
-                $ionicPopup.alert({
-                    title: 'Sucesso',
-                    content: 'Você está Logado!'
-                })
-            })
-            .catch(function(response) {
-                $ionicPopup.alert({
-                    title: 'Erro',
-                    content: response.data ? response.data || response.data.message : response
-                })
-            });
-    };
-
-    $scope.toggleLeft = function() {
-        $ionicSideMenuDelegate.toggleLeft();
-    };
-
-    $scope.logout = function() {
-        $auth.logout();
-    };
-
-    $scope.isAuthenticated = function() {
-        return $auth.isAuthenticated();
-    };
-
-    OpenFB.get('/me').success(function(user) {
-        $scope.user = user;
-    });
-    $scope.GetID = function(id) {
-        console.log(id);
-    }
-})
-
-.factory("Players", function($resource) {
+    .factory("Players", function($resource) {
         return $resource("http://localhost:3000/player",{id: '@id'},{
             index: {
                 method: 'GET',
@@ -68,97 +14,202 @@ MyApp.controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, $ionic
         });
     })
 
-    .controller('LeaderboardCtrl', function($scope, PlayerService) {
-        PlayerService.buttonPress().then(function(response) {
+    .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate, $timeout) {
+        $scope.counter = 15;
+        $scope.jumpa = function(){
+        ValuesService.buttonPress().then(function(response) {
              console.log(ValuesService.getPreviousId);
              console.log(response.data);
-             $scope.players = response.data;
+             $scope.values = response.data;
+             $score.counter = 15;
          })
-        $scope.nextPlayer = function(){
-           PlayerService.buttonPress().then(function(response) {
-                console.log(PlayerService.getPreviousId);
+     }
+
+        $scope.onTimeout = function(){
+          $scope.counter--;
+          if ($scope.counter > 0) {
+              mytimeout = $timeout($scope.onTimeout,1000);
+          }
+          else {
+            var confirmPopup = $ionicPopup.confirm({
+              title: 'Seu tempo Acabou!',
+              template: 'Deseja uma proxima questão ?'
+            });
+            confirmPopup.then(function(res){
+              if(res){
+                $scope.counter = 15;
+                $scope.jumpa();
+                $scope.onTimeout();
+            }
+              else
+              console.log('Cancelar encerramento');
+            })
+          }
+        }
+        $scope.reset= function(){
+          $scope.counter = 15;
+          $scope.onTimeout();
+        }
+        $scope.compare = function(x, y, id) {
+            var size = document.getElementsByTagName('span').length;
+            if (x === y) {
+                document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
+                document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
+                var answer = ScoreEntry.getTrue();
+                if ( answer <= 3){
+                  var score = ScoreEntry.getScore();
+                }
+                else if ( answer > 3){
+                  score = ScoreEntry.getBonus();
+                }
+
+                document.getElementsByTagName('result')[0].innerHTML = score;
+                $scope.certa = function(){
+                    return true;
+                }
+            } else {
+                document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
+                document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
+
+                var answer = ScoreEntry.getAnswer();
+                if (answer <= 3){
+                  var score = ScoreEntry.resetScore();
+                }
+                else if ( answer > 3){
+                  answer = ScoreEntry.getFalse();
+                  score =  ScoreEntry.getScore();
+                }
+
+                document.getElementsByTagName('result')[0].innerHTML = score;
+                $scope.certa = function(){
+                    return false;
+                }
+            }
+            var size = document.getElementsByTagName('li').length;
+            for(var i=0;i<size;i++){
+                document.getElementsByTagName('li')[i].style.pointerEvents = "none";
+            }
+        }
+
+        $scope.clean = function() {
+            var size = document.getElementsByTagName('span').length;
+            for(var i=0;i<size;i++){
+                document.getElementsByTagName('span')[i].style.backgroundColor = "#1E90FF";
+                document.getElementsByTagName('span')[i].style.boxShadow = "0 8px 0 #4169E1";
+            }
+            var size = document.getElementsByTagName('li').length;
+            for(var i=0;i<size;i++){
+                document.getElementsByTagName('li')[i].style.pointerEvents = "auto";
+            }
+            document.getElementsByTagName('result')[0].innerHTML = ' ';
+        }
+        $ionicModal.fromTemplateUrl('templates/answered.html', function($ionicModal) {
+            $scope.modal = $ionicModal;
+            console.log($scope.modal);
+        }, {
+            scope: $scope,
+            animation: 'slide-in-up',
+            backdropClickToClose: false,
+            hardwareBackButtonClose: false,
+            focusFirstInput: true
+        });
+        $scope.openModal = function() {
+            $scope.modal.show();
+        };
+        $scope.closeModal = function() {
+            $scope.modal.hide();
+        };
+        $scope.encerrar = function(){
+          var confirmPopup = $ionicPopup.confirm({
+            title: 'Fim da partida',
+            template: 'Deseja realmente encerrar a partida?'
+          });
+
+          confirmPopup.then(function(res){
+
+            if(res){
+              $state.go('start.start');
+              console.log('Encerrar');
+            }
+            else
+            console.log('Cancelar encerramento');
+          })
+        }
+
+        $scope.pular = function(){
+            document.getElementsByTagName('result')[0].innerHTML = ' ';
+        }
+
+        ValuesService.buttonPress().then(function(response) {
+            console.log(ValuesService.getPreviousId);
+            console.log(response.data);
+            $scope.values = response.data;
+        })
+
+        $scope.jump = function(){
+           ValuesService.buttonPress().then(function(response) {
+                console.log(ValuesService.getPreviousId);
                 console.log(response.data);
-                $scope.players = response.data;
+                $scope.values = response.data;
+                $scope.counter = 15;
+                $scope.timeout();
             })
         }
     })
 
-    .controller('AndroidLoginCtrl',
-        function($scope, $state, $q, PlayerService, $ionicLoading) {
+    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate, Players) {
 
-            var fbLoginSuccess = function(response) {
-                if (!response.authResponse){
-                    fbLoginError("Sem resposta");
-                    return;
-                }
+        $scope.add =function(){
+        var newPlayer = {
+          name: $scope.user.name,
+          idFb: $scope.user.id,
+          score: $scope.user.score
+        };
 
-                var authResponse = response.authResponse;
-
-            var fbLoginError = function(error){
-                console.log('fbLoginError', error);
-                $ionicLoading.hide();
-            };
+        console.log(newPlayer);
+        Players.save(newPlayer);
+      }
 
 
-            var getFacebookProfileInfo = function (authResponse) {
-                var info = $q.defer();
+        $scope.showAlert = function() {
+            var alertPopup = $ionicPopup.alert({
+                title: 'Erro!',
+                template: 'Você tem que estar logado para jogar.'
+            });
+        };
 
-                facebookConnectPlugin.api('/me?fields=email,name&access_token='
-                + authResponse.accessToken, null,
-                function (response) {
-            		console.log(response);
-                    info.resolve(response);
-                },
-                function (response) {
-            		console.log(response);
-                    info.reject(response);
+        $scope.authenticate = function(provider) {
+            $auth.authenticate(provider)
+                .then(function() {
+                    $ionicPopup.alert({
+                        title: 'Sucesso',
+                        content: 'Você está Logado!'
+                    })
+                })
+                .catch(function(response) {
+                    $ionicPopup.alert({
+                        title: 'Erro',
+                        content: response.data ? response.data || response.data.message : response
+                    })
                 });
+        };
 
-                return info.promise;
-            };
+        $scope.toggleLeft = function() {
+            $ionicSideMenuDelegate.toggleLeft();
+        };
 
+        $scope.logout = function() {
+            $auth.logout();
+        };
 
-            $scope.facebookSignIn = function() {
+        $scope.isAuthenticated = function() {
+            return $auth.isAuthenticated();
+        };
 
-                facebookConnectPlugin.getLoginStatus(function(success){
-                    if(success.status === 'connected'){
-                        console.log('getLoginStatus', success.status);
-
-                        var user = PlayerService.getPlayer('facebook');
-
-                        if(!user.userID){
-                            getFacebookProfileInfo(success.authResponse)
-                            .then(function(profileInfo) {
-
-                                PlayerService.setPlayer({
-                                    authResponse: success.authResponse,
-                                    userID: profileInfo.id,
-                                    name: profileInfo.name,
-                                    email: profileInfo.email,
-                                    picture : "http://graph.facebook.com/"
-                                    + success.authResponse.userID
-                                    + "/picture?type=large"
-                                });
-
-                                $state.go('start.start');
-
-                            }, function(fail){
-                                console.log('Informação de login falhou', fail);
-                            });
-                        }else{
-                            $state.go('start.start');
-                        }
-
-                    } else {
-                        console.log('Status do login: ', success.status);
-
-                        $ionicLoading.show({
-                            template: 'Logando...'
-                        });
-
-                        facebookConnectPlugin.login(['email', 'public_profile'],
-                        fbLoginSuccess, fbLoginError);
-                    }
-                });
-            };
-        })
+        OpenFB.get('/me').success(function(user) {
+            $scope.user = user;
+        });
+        $scope.GetID = function(id) {
+            console.log(id);
+        }
+    })

@@ -1,4 +1,4 @@
-.module('playerCenter', ['ngResource']);
+angular.module('playerCenter', ['ngResource']);
 
 .service('PlayerService', function() {
 

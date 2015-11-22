@@ -1,5 +1,4 @@
-var MyApp = angular.module('starter', ['ionic', 'satellizer', 'openfb','ngResource','callRails', 'Score','ngResource'])
-
+angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers','ngResource'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -54,7 +53,7 @@ var MyApp = angular.module('starter', ['ionic', 'satellizer', 'openfb','ngResour
             views: {
                 'theme': {
                     templateUrl: 'templates/theme.html',
-                    controller: 'Answer'
+                    controller: 'HomeCtrl'
                 }
             }
         })
@@ -68,7 +67,7 @@ var MyApp = angular.module('starter', ['ionic', 'satellizer', 'openfb','ngResour
             views: {
                 'leaderboard': {
                     templateUrl: 'templates/leaderboard.html',
-                    controller: 'LeaderboardCtrl'
+                    controller: 'HomeCtrl'
                 }
             }
         })
@@ -99,7 +98,7 @@ var MyApp = angular.module('starter', ['ionic', 'satellizer', 'openfb','ngResour
             views: {
                 'endgame': {
                     templateUrl: 'templates/endgame.html',
-                    controller: 'Answer'
+                    controller: 'HomeCtrl'
                 }
             }
         })
@@ -113,7 +112,7 @@ var MyApp = angular.module('starter', ['ionic', 'satellizer', 'openfb','ngResour
             views: {
                 'question': {
                     templateUrl: 'templates/question.html',
-                    AnswerController: 'Answer'
+                    controller: 'Answer'
 
                 }
             }
