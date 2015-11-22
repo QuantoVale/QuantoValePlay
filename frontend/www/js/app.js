@@ -17,7 +17,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('app', {
             abstract: true,
             templateUrl: 'templates/menu.html',
-            AppController: 'AppCtrl'
+            controller: 'AppCtrl'
         })
         .state('app.home', {
             url: '/',
@@ -31,7 +31,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('start', {
             abstract: true,
             templateUrl: 'templates/menu.html',
-          AppController: 'AppCtrl'
+          controller: 'AppCtrl'
         })
 
         .state('start.start', {
@@ -46,7 +46,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('theme', {
             abstract: true,
             templateUrl: 'templates/menu.html',
-          AppController: 'AppCtrl'
+          controller: 'AppCtrl'
         })
         .state('theme.theme', {
             url: '/theme',
@@ -60,7 +60,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('leaderboard', {
             abstract: true,
             templateUrl: 'templates/menu.html',
-            AppController: 'AppCtrl'
+            controller: 'AppCtrl'
         })
         .state('leaderboard.leaderboard', {
             url: '/leaderboard',
@@ -74,14 +74,14 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('add', {
             abstract: true,
             templateUrl: 'templates/add.html',
-            PlayersController: 'PlayersController'
+            controller: 'PlayersController'
         })
         .state('add.add', {
             url: '/add',
             views: {
                 'add': {
                     templateUrl: 'templates/add.html',
-                    PlayersController: 'PlayersController'
+                    controller: 'PlayersController'
                 }
             }
         })
@@ -91,7 +91,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('endgame', {
             abstract: true,
             templateUrl: 'templates/menu.html',
-            AppController: 'AppCtrl'
+            controller: 'AppCtrl'
         })
         .state('endgame.endgame', {
             url: '/endgame',
@@ -105,7 +105,7 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         .state('question', {
             abstract: true,
             templateUrl: 'templates/menu.html',
-            AppController: 'AppCtrl'
+            controller: 'AppCtrl'
         })
         .state('question.question', {
             url: '/question',

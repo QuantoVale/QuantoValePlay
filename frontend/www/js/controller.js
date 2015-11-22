@@ -1,4 +1,41 @@
 angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
+    .controller('AppCtrl', function($scope, $ionicModal, $timeout) {})
+
+    .controller("ContractsController",
+        function($scope, $http) {
+            var url = "http://localhost:3000/contratos/index";
+
+
+            $http.get(url).success(function(data) {
+                console.log(data);
+                $scope.questions = data;
+            }).error(function(error) {
+                console.log("Server side error");
+            });
+        })
+        .controller("PlayersController",
+            function($scope, Players, $http) {
+                var url = "http://localhost:3000/player"
+
+                $http.get(url).success(function(data){
+                console.log(data);
+                    alert("Logado com Sucesso");
+                })
+                .error(function(erro){
+                    alert("Erro ao logar");
+                })
+
+                var newVisitor = {
+                name: "Pedro",
+                idFb: 451,
+                score: 100
+                };
+
+                $scope.visitors =  newVisitor;
+
+                Players.save(newVisitor);
+            })
+
 
     .factory("Players", function($resource) {
         return $resource("http://localhost:3000/player",{id: '@id'},{
