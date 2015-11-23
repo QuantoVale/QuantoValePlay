@@ -12,9 +12,8 @@
   "devDependencies": {
     "bower": "^1.3.3",
     "gulp-util": "^2.2.14",
-    "karma": "^0.13.15",
-    "shelljs": "^0.3.0",
     "karma": "0.12.22",
+    "shelljs": "^0.3.0",
     "karma-chrome-launcher": "0.1.4",
     "karma-jasmine": "0.1.5",
     "karma-coverage": "0.2.6",
@@ -27,7 +26,6 @@
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard"
   ],
-
   "cordovaPlatforms": [
     "android"
   ]

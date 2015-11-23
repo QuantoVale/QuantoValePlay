@@ -2,7 +2,7 @@
     <ion-content class="backgroundStart" scroll="false">
         <div ng-if="!isAuthenticated()">
             <div class="logo icon-profile text-center">
-                <img src="img/ionic.png">
+                <img class="circular animated zoomInDown" src="img/ionic.png">
                 <h1>
                   <font color="white">Bem-vindo,</font>
                 </h1>
@@ -12,7 +12,7 @@
         <div ng-if="isAuthenticated()" ng-controller="HomeCtrl">
             <div class="logo icon-profile text-center">
                 <form ng-submit ="newPlayer()">
-                    <img class="circular" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
+                    <img class="circular animated zoomInDown" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
                     <h1>
                       <font color="white">Bem-vindo,</font>
                     </h1>
