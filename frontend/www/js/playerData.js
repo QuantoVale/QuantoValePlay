@@ -18,7 +18,7 @@ angular.module('playerCenter', ['ngResource']);
 
 .factory('PlayerData',
     function($resource){
-        return $resource("player/:id",{ id: '@id'}, {
+        return $resource("http://localhost:3000/player/:id",{ id: '@id'}, {
             index: {
                 method: 'GET',
                 isArray: true,

@@ -51,6 +51,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
         });
     })
 
+
     .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate, $timeout) {
         $scope.counter = 15;
         $scope.jumpa = function(){
