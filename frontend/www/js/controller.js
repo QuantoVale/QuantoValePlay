@@ -50,9 +50,22 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
             }
         });
     })
+    .factory('Interation',
+        function($resource){
+            return $resource("http://localhost:3000/player/:id/score/:score",{ id: '@id', score: '@score'}, {
+                index: {
+                    method: 'GET',
+                    isArray: true,
+                    rensponseType: 'json'
+                },
+                update: {
+                    method: 'POST',
+                    rensponseType: 'json'
+                }
+            });
+        })
 
-
-    .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate, $timeout) {
+    .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate, $timeout, Interation) {
         $scope.counter = 15;
         $scope.jumpa = function(){
         ValuesService.buttonPress().then(function(response) {
@@ -100,7 +113,11 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                 else if ( answer > 3){
                   score = ScoreEntry.getBonus();
                 }
-
+                var player = {
+                    id: 2,
+                    score: 10
+                }
+                Interation.update(player);
                 document.getElementsByTagName('result')[0].innerHTML = score;
                 $scope.certa = function(){
                     return true;
