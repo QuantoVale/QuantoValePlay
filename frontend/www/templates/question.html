@@ -1,8 +1,4 @@
 <ion-view>
-    <div>
-        {{counter}}
-        <button ng-click="stop()">Stop</button>
-    </div>
     <ion-content class="backgroundQuestion padding">
         <div class="text-center opcquest">
             <h4>
@@ -11,12 +7,15 @@
         </div>
         <ul class="list "ng-repeat="val in values.val">
             <li class="center">
-                <a ng-click="openModal(); end(); compare({{val}}, {{values.trueval}}, {{$index}})" id="button2">
+                <a ng-click="openModal(); compare({{val}}, {{values.trueval}}, {{$index}})" id="button2">
                 <span>R$ {{val}}</span>
                 </a>
             </li>
         </ul>
     </ion-content>
+    <div ng-init="onTimeout()">
+         <div class="progress" style="width: {{counter*7}}%;"></div>
+    </div>
 </ion-view>
 <div class="tabs tabs-icon-top tabs-balanced">
     <a class="tab-item" ng-click="encerrar(); closeModal(); jump(); clean()">
@@ -24,7 +23,7 @@
         Encerrar
     </a>
     <a class="tab-item" ng-click = "jump(); clean()">
-    <i class="icon ion-forward" ></i>
+    <i class="icon ion-forward"></i>
         Pular
     </a>
 </div>
