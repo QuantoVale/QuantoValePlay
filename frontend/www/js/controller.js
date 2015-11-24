@@ -228,8 +228,19 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
             }
         })
 
-    .controller('HomeCtrl', function($scope, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate, Players) {
+    .controller('HomeCtrl', function($scope, $location, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate, Players) {
 
+        OpenFB.init('1027162853990155', window.location.origin);
+
+        $scope.facebookLogin = function() {
+            OpenFB.login('email,read_stream,publish_stream').then(
+                function () {
+                    $location.path('/app/person/me/feed');
+                },
+                function () {
+                    alert('OpenFB login failed');
+                });
+        }
         $scope.add =function(){
         var newPlayer = {
           name: $scope.user.name,
