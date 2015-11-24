@@ -26,21 +26,22 @@
     <body ng-app="starter">
         <ion-side-menus>
             <!-- Left side menu: User avatar and options-->
-            <ion-side-menu class="my-overlay" side="left" width="190" ng-controller="HomeCtrl">
-                <div ng-if="!isAuthenticated()" class="item item-avatar">
+            <ion-side-menu class="my-overlay-bottom" side="left" width="190" ng-controller="HomeCtrl">
+                <div ng-if="!isAuthenticated()" class="item item-avatar my-overlay">
                     <img ng-src="img/ionic.png" />
                     <h2>Usuário não cadastrado!</h2>
                 </div>
-                <div ng-if="isAuthenticated()" class="item item-avatar">
+                <div ng-if="isAuthenticated()" class="item item-avatar my-overlay">
                     <img ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=400&height=400" />
                     <h2>{{user.name}}</h2>
                 </div>
-                <button class="button button-full button-calm icon-left ion-settings">
+                <button class="button button-full button-positive icon-left ion-settings">
                     Opções
                 </button>
                 <button class="button button-full button-energized icon-left ion-ios-information">
                     Ajuda
                 </button>
+                <button class="button button-full button-clear button-positive"><u>sobre</u></button>
             </ion-side-menu>
             <ion-side-menu-content>
                 <!-- Left menu content -->

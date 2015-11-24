@@ -9,7 +9,7 @@
 	to { background-position: 100% 0; }
 }
 
-.home-background{
+.scroll-content{
 
 	background-image: url('../img/bg-clouds.png');
 	background-position: 0px 0px
@@ -30,8 +30,6 @@
     -moz-user-select: none;
     user-select: none;
 
-    position: fixed;
-    top: 0;
     left: 0;
 
     -webkit-transform: translate3d(0, -50px, 0);
@@ -97,7 +95,7 @@
 .modalNew{
     margin-top: 100%;
     margin-left: 5%;
-    width: 90%;
+    width: 90%%;
 }
 
 figure, figcaption {
@@ -238,6 +236,10 @@ position:relative; /*required to make PIE work*/
 }
 
 .my-overlay {
+  background-color: #3232ff;
+}
+
+.my-overlay-bottom {
   background-color: white;
 }
 
