@@ -51,14 +51,14 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
         });
     })
     .factory("Interation", function($resource) {
-        return $resource("http://localhost:3000/player",{id: '@id', score: '@score'},{
-            index: {
+        return $resource("http://localhost:3000/player/:id/score/:score",{id: '@id', score: '@score'},{
+            save: {
                 method: 'GET',
                 isArray: true,
                 responseType: 'json'
             },
-            update: {
-                method: 'PUT',
+            save: {
+                method: 'get',
                 responseType: 'json'
             }
         });
