@@ -50,22 +50,20 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
             }
         });
     })
-    .factory('Interation',
-        function($resource){
-            return $resource("http://localhost:3000/player/:id/score/:score",{ id: '@id', score: '@score'}, {
-                index: {
-                    method: 'GET',
-                    isArray: true,
-                    rensponseType: 'json'
-                },
-                update: {
-                    method: 'POST',
-                    rensponseType: 'json'
-                }
-            });
-        })
-
-        .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate, $timeout) {
+    .factory("Interation", function($resource) {
+        return $resource("http://localhost:3000/player",{id: '@id', score: '@score'},{
+            index: {
+                method: 'GET',
+                isArray: true,
+                responseType: 'json'
+            },
+            update: {
+                method: 'PUT',
+                responseType: 'json'
+            }
+        });
+    })
+        .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate, $timeout, Interation) {
             $scope.counter = 15;
             var total = 0;
 
@@ -130,10 +128,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                          id: 2,
                          score: 10
                      }
-                     Interation.update(player);
-
-                    document.getElementsByTagName('result')[0].innerHTML = score;
-
+                     Interation.save(player);
                 } else {
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                     document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
