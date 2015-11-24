@@ -104,22 +104,25 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
               $scope.onTimeout();
             }
 
-            $scope.end = function(){
-              if (total == 9){
-                $state.go('endgame.endgame');
-                console.log("Fim da rodada");
-              }else
-               console.log("Questões restantes = "+(total));
-             }
 
             $scope.compare = function(x, y, id) {
+
+                total = ScoreEntry.getAnswer();
+
+                if (total == 10){
+                    $state.go('endgame.endgame');
+                    console.log("Fim da rodada");
+
+                }else{
+                 console.log("Questões restantes = "+(total));
+               }
+
                 var size = document.getElementsByTagName('span').length;
                 if (x === y) {
                     document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
 
                     var answer = ScoreEntry.getTrue();
-                    total = ScoreEntry.getAnswer();
 
                      console.log("Total = " + total);
 
@@ -137,8 +140,6 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                 } else {
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                     document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
-
-                     total = ScoreEntry.getAnswer();
 
                     console.log("Total = " + total);
 
