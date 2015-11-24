@@ -10,7 +10,11 @@ class PlayerController < ApplicationController
      end
      #Método POST
      def create
-       respond_with Player.create(visitor_params)
+       if (verifyIdPlayer(params[:idFb]) == 1)
+        respond_with Player.create(visitor_params)
+      else
+        puts "<<<<<<<"
+      end
      end
      #Método Delete
      def destroy
@@ -61,6 +65,18 @@ class PlayerController < ApplicationController
         return @scoreTotal = score
 
      end
+
+     def verifyIdPlayer (idFb)
+
+       player = Player.where("idFb = ? ", params[idFb])
+
+       if ( player.empty? )
+         return 1;
+       else
+         return 0;
+       end
+
+    end
 
    private
      def visitor_params
