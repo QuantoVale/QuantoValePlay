@@ -6,6 +6,7 @@
         <title></title>
         <link href="lib/ionic/css/ionic.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
+        <link href="lib/ng-material-floating-button/mfb/dist/mfb.css" rel="stylesheet">
         <!-- ionic/angularjs js -->
         <script src="lib/ionic/js/ionic.bundle.js"></script>
         <!-- cordova script (this will be a 404 during development) -->
@@ -21,7 +22,8 @@
         <script src="lib/angular-bootstrap/ui-bootstrap.js"></script>
         <script src="lib/angular-bootstrap/ui-bootstrap-csp.css"></script>
         <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-
+        <script src="lib/ng-material-floating-button/mfb/dist/mfb.js"></script>
+        <script src="lib/ng-material-floating-button/src/mfb-directive.js"></script>
     </head>
     <body ng-app="starter">
         <ion-side-menus>
@@ -47,7 +49,7 @@
                 <!-- Left menu content -->
                 <ion-pane ng-controller="HomeCtrl">
                     <ion-header-bar class="bar bar-header bar-balanced">
-                        <button class="button button-icon icon ion-navicon" ng-click="toggleLeft()"></button>
+
                     </ion-header-bar>
                     <ion-content scroll="false">
                         <!-- Index Content: logo and entering button-->

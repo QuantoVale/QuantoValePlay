@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers','ngResource'])
+angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers','ngResource', 'ng-mfb'])
 
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
