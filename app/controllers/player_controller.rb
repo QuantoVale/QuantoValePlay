@@ -21,6 +21,10 @@ class PlayerController < ApplicationController
        render json: Player.find(params[:id])
      end
 
+     def ordination_ranking
+         @player.sort_by(@player.score)
+     end
+
      def insertScore
          #Selecionando qual player deve ser atualizado
          @player =  Player.find(params[:id])

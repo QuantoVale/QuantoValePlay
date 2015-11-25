@@ -148,12 +148,6 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                         addScore(answer);
                     }
 
-                    document.getElementsByTagName('result')[0].innerHTML = score;
-
-                }
-                var size = document.getElementsByTagName('li').length;
-                for(var i=0;i<size;i++){
-                    document.getElementsByTagName('li')[i].style.pointerEvents = "none";
                 }
             }
 
