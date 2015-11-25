@@ -1,3 +1,10 @@
+<nav mfb-menu position="tr" effect="zoomin"
+     active-icon="ion-close-round" resting-icon="ion-plus-round"
+     toggling-method="click">
+     <button mfb-button icon="image-face"ng-if="isAuthenticated()"  label="{{user.name}}"></button>
+     <button mfb-button icon="ion-gear-a" label="Opções"></button>
+
+</nav>
 <ion-view>
     <ion-content scroll="false" class="padding">
         <div ng-if="!isAuthenticated()">

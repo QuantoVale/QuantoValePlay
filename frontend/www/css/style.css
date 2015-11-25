@@ -8,7 +8,9 @@
 	from { background-position: 0 0; }
 	to { background-position: 100% 0; }
 }
-
+.image-face:before {
+  background: url('https://graph.facebook.com/{{ user.id }}/picture?width=400&height=400'); 
+}
 .scroll-content{
 
 	background-image: url('../img/bg-clouds.png');
