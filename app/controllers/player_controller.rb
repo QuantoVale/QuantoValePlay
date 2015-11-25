@@ -22,7 +22,8 @@ class PlayerController < ApplicationController
      end
 
      def ordination_ranking
-         @player.sort_by(@player.score)
+         @ranking = Player.all
+         @ranking.sort {|a,b| b.score <=> a.score}
      end
 
      def insertScore
@@ -48,7 +49,6 @@ class PlayerController < ApplicationController
 
       def calcRecompensa(totalAcertos)
         score  = 0;
-
        for i in 1..(totalAcertos.to_i)
           if (i < 3)
              score += 50;
@@ -59,7 +59,6 @@ class PlayerController < ApplicationController
            else
             score += 400;
            end
-
         end
 
         return @scoreTotal = score

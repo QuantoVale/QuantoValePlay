@@ -125,9 +125,10 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                          return true;
                      }
                      var player = {
-                         id: 2,
+                         id: 1,
                          score: 10
                      }
+                     console.log("TESTEEE "+ $scope.user);
                      Interation.save(player);
                 } else {
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
