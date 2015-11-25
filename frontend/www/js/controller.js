@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
+angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb'])
     .controller('AppCtrl', function($scope, $ionicModal, $timeout) {})
 
     .controller("ContractsController",
@@ -228,19 +228,24 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
             }
         })
 
-    .controller('HomeCtrl', function($scope, $location, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate, Players) {
+    .controller('HomeCtrl', function($scope, $state, $location, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate, Players) {
+        $scope.facebookLogin = function () {
 
-        OpenFB.init('1027162853990155', window.location.origin);
-
-        $scope.facebookLogin = function() {
-            OpenFB.login('email,read_stream,publish_stream').then(
+            OpenFB.login('public_profile','email','user_friends','user_birthday','publish_actions').then(
                 function () {
-                    $location.path('/app/person/me/feed');
+                    $state.go('app.logout');
                 },
                 function () {
-                    alert('OpenFB login failed');
+                    alert('Autenticação falhou');
                 });
-        }
+        };
+
+
+        $scope.logout = function () {
+            OpenFB.logout();
+            $state.go('app.home');
+        };
+
         $scope.add =function(){
         var newPlayer = {
           name: $scope.user.name,
@@ -290,6 +295,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
 
         OpenFB.get('/me').success(function(user) {
             $scope.user = user;
+            console.log(user);
         });
         $scope.GetID = function(id) {
             console.log(id);

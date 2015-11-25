@@ -1,16 +1,29 @@
 angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers','ngResource'])
 
-.run(function($ionicPlatform) {
+.run(function($rootScope, $state, $ionicPlatform, $window, OpenFB) {
     $ionicPlatform.ready(function() {
+        OpenFB.init('1027162853990155', 'http://localhost:8100/oauthcallback.html');
+
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
         if (window.StatusBar) {
             StatusBar.styleDefault();
         }
+
+        $rootScope.$on('$stateChangeStart', function(event, toState) {
+            if (toState.name !== "app.home" && toState.name !== "app.logout" && !$window.sessionStorage['fbtoken']) {
+                $state.go('app.home');
+                event.preventDefault();
+            }
+        });
+
+        $rootScope.$on('OAuthException', function() {
+            $state.go('app.home');
+        });
+
     });
 })
-
 
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
