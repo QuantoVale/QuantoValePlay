@@ -229,21 +229,28 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
         })
 
     .controller('HomeCtrl', function($scope, $state, $location, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate, Players) {
+
+        $scope.hasData = function(){
+            return false;
+        }
+
         $scope.facebookLogin = function () {
 
             OpenFB.login('public_profile','email','user_friends','user_birthday','publish_actions').then(
                 function () {
-                    $state.go('app.logout');
+                    $state.go('start.start');
                 },
                 function () {
-                    alert('Autenticação falhou');
+                    console.log('Autenticação falhou');
                 });
         };
 
 
         $scope.logout = function () {
             OpenFB.logout();
-            $state.go('app.home');
+            $scope.isLogged = function(response) {
+                return false;
+            };
         };
 
         $scope.add =function(){
@@ -285,16 +292,20 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
             $ionicSideMenuDelegate.toggleLeft();
         };
 
-        $scope.logout = function() {
-            $auth.logout();
-        };
-
-        $scope.isAuthenticated = function() {
-            return $auth.isAuthenticated();
-        };
+        // $scope.isAuthenticated = function() {
+        //     return $auth.isAuthenticated();
+        // };
 
         OpenFB.get('/me').success(function(user) {
             $scope.user = user;
+            if(user==null){
+                $scope.hasData = function(){
+                    return false;
+                }
+            }else {
+                $window.location.reload();
+                return true;
+            }
             console.log(user);
         });
         $scope.GetID = function(id) {

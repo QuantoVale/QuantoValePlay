@@ -1,15 +1,6 @@
 <ion-view>
     <ion-content class="backgroundStart" scroll="false">
-        <div ng-if="!isAuthenticated()">
-            <div class="logo icon-profile text-center">
-                <img class="circular animated zoomInDown" src="img/ionic.png">
-                <h1>
-                  <font color="white">Bem-vindo,</font>
-                </h1>
-            </div>
-            <h2 class="color-font">usuário não cadastrado!</h2>
-        </div>
-        <div ng-if="isAuthenticated()" ng-controller="HomeCtrl">
+        <div>
             <div class="logo icon-profile text-center">
                 <form ng-submit ="newPlayer()">
                     <img class="circular animated zoomInDown" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
@@ -22,6 +13,9 @@
                 </form>
             </div>
         </div>
+        <button ng-click="logout()" class="button button-full button-royal">
+            Log Out
+        </button>
         <button ui-sref="theme.theme" ng-click="GetID(5)" class="opcoes1 button button-full button-positive icon-left ion-plus">
             Novo Jogo
         </button>
@@ -36,5 +30,5 @@
     </ion-content>
 </ion-view>
 <div class="bar bar-footer bar-clear">
-    <a class="button button-clear icon-left ion-ios-arrow-left" href="#/index.html"> Voltar <a>
+    <a class="button button-clear icon-left ion-ios-arrow-left" ui-sref="app.home"> Voltar <a>
 </div>
