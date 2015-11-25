@@ -25,6 +25,11 @@ class PlayerController < ApplicationController
        render json: Player.find(params[:id])
      end
 
+     def ordination_ranking
+         @ranking = Player.all
+         @ranking.sort {|a,b| b.score <=> a.score}
+     end
+
      def insertScore
          #Selecionando qual player deve ser atualizado
          @player =  Player.find(params[:id])
@@ -48,7 +53,6 @@ class PlayerController < ApplicationController
 
       def calcRecompensa(totalAcertos)
         score  = 0;
-
        for i in 1..(totalAcertos.to_i)
           if (i < 3)
              score += 50;
@@ -59,7 +63,6 @@ class PlayerController < ApplicationController
            else
             score += 400;
            end
-
         end
 
         return @scoreTotal = score

@@ -50,22 +50,20 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
             }
         });
     })
-    .factory('Interation',
-        function($resource){
-            return $resource("http://localhost:3000/player/:id/score/:score",{ id: '@id', score: '@score'}, {
-                index: {
-                    method: 'GET',
-                    isArray: true,
-                    rensponseType: 'json'
-                },
-                update: {
-                    method: 'POST',
-                    rensponseType: 'json'
-                }
-            });
-        })
-
-        .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate, $timeout) {
+    .factory("Interation", function($resource) {
+        return $resource("http://localhost:3000/player/:id/score/:score",{id: '@id', score: '@score'},{
+            save: {
+                method: 'GET',
+                isArray: true,
+                responseType: 'json'
+            },
+            save: {
+                method: 'get',
+                responseType: 'json'
+            }
+        });
+    })
+        .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate, $timeout, Interation) {
             $scope.counter = 15;
             var total = 0;
 
@@ -130,13 +128,11 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                          return true;
                      }
                      var player = {
-                         id: 2,
+                         id: 1,
                          score: 10
                      }
-                     Interation.update(player);
-
-                    document.getElementsByTagName('result')[0].innerHTML = score;
-
+                     console.log("TESTEEE "+ $scope.user);
+                     Interation.save(player);
                 } else {
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                     document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
@@ -154,12 +150,6 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource'])
                         addScore(answer);
                     }
 
-                    document.getElementsByTagName('result')[0].innerHTML = score;
-
-                }
-                var size = document.getElementsByTagName('li').length;
-                for(var i=0;i<size;i++){
-                    document.getElementsByTagName('li')[i].style.pointerEvents = "none";
                 }
             }
 
