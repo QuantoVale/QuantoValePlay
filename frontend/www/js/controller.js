@@ -228,7 +228,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
             }
         })
 
-    .controller('HomeCtrl', function($scope, $state, $location, $ionicPopup, $auth, OpenFB, $ionicSideMenuDelegate, Players) {
+    .controller('HomeCtrl', function($scope, $state, $ionicPopup, OpenFB, $ionicSideMenuDelegate, Players) {
 
         $scope.hasData = function(){
             return false;
@@ -241,16 +241,17 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                     $state.go('start.start');
                 },
                 function () {
-                    console.log('Autenticação falhou');
+                    $ionicPopup.alert({
+                        title: 'Autenticação falhou',
+                        content: response.data ? response.data || response.data.message : response
+                    })
                 });
         };
 
 
         $scope.logout = function () {
             OpenFB.logout();
-            $scope.isLogged = function(response) {
-                return false;
-            };
+            $state.go('app.home');
         };
 
         $scope.add =function(){
@@ -264,37 +265,9 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
         Players.save(newPlayer);
       }
 
-
-        $scope.showAlert = function() {
-            var alertPopup = $ionicPopup.alert({
-                title: 'Erro!',
-                template: 'Você tem que estar logado para jogar.'
-            });
-        };
-
-        $scope.authenticate = function(provider) {
-            $auth.authenticate(provider)
-                .then(function() {
-                    $ionicPopup.alert({
-                        title: 'Sucesso',
-                        content: 'Você está Logado!'
-                    })
-                })
-                .catch(function(response) {
-                    $ionicPopup.alert({
-                        title: 'Erro',
-                        content: response.data ? response.data || response.data.message : response
-                    })
-                });
-        };
-
         $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleLeft();
         };
-
-        // $scope.isAuthenticated = function() {
-        //     return $auth.isAuthenticated();
-        // };
 
         OpenFB.get('/me').success(function(user) {
             $scope.user = user;
