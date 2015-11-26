@@ -1,16 +1,30 @@
-angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers','ngResource', 'ng-mfb'])
+angular.module('starter', ['ionic', 'openfb', 'starter.controllers','ngResource','ng-mfb'])
 
-.run(function($ionicPlatform) {
+
+.run(function($rootScope, $state, $ionicPlatform, $window, OpenFB) {
     $ionicPlatform.ready(function() {
+        OpenFB.init('1027162853990155', 'http://localhost:8100/oauthcallback.html');
+
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }
         if (window.StatusBar) {
             StatusBar.styleDefault();
         }
+
+        $rootScope.$on('$stateChangeStart', function(event, toState) {
+            if (toState.name !== "app.home" && toState.name !== "app.logout" && !$window.sessionStorage['fbtoken']) {
+                $state.go('app.home');
+                event.preventDefault();
+            }
+        });
+
+        $rootScope.$on('OAuthException', function() {
+            $state.go('app.home');
+        });
+
     });
 })
-
 
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -119,40 +133,3 @@ angular.module('starter', ['ionic', 'satellizer', 'openfb', 'starter.controllers
         });
     $urlRouterProvider.otherwise('/');
 })
-
-.config(function($authProvider) {
-    // OAuth popup should expand to full screen with no location bar/toolbar.
-    var commonConfig = {
-        popupOptions: {
-            location: 'no',
-            toolbar: 'no',
-            width: 780,
-            height: 600
-        }
-    };
-
-
-    $authProvider.facebook(angular.extend({}, commonConfig, {
-        clientId: '1027162853990155',
-        responseType: 'token',
-        url: '/auth/facebook',
-        authorizationEndpoint: 'https://www.facebook.com/v2.3/dialog/oauth',
-        redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
-        requiredUrlParams: ['display', 'scope'],
-        scope: ['email'],
-        scopeDelimiter: ',',
-        display: 'popup',
-        type: '2.0',
-        popupOptions: {
-            width: 580,
-            height: 400
-        }
-    }));
-
-
-    $authProvider.google(angular.extend({}, commonConfig, {
-        clientId: '949086308295-cg79vahcigculbnf5ttr580cavhmv8a0.apps.googleusercontent.com',
-        responseType: 'token',
-        url: 'http://localhost:8100/auth/google'
-    }));
-});

@@ -7,27 +7,16 @@
 </nav>
 <ion-view>
     <ion-content scroll="false" class="padding">
-        <div ng-if="!isAuthenticated()">
-            <div class="logo icon-profile text-center">
-                <img class="circular animated zoomInDown" src="img/ionic.png">
+        <div class="logo icon-profile text-center">
+            <form ng-submit ="newPlayer()">
+                <img class="circular animated zoomInDown" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
                 <h1>
                   <font color="white">Bem-vindo,</font>
                 </h1>
-            </div>
-            <h2 class="color-font">usuário não cadastrado!</h2>
-        </div>
-        <div ng-if="isAuthenticated()" ng-controller="HomeCtrl">
-            <div class="logo icon-profile text-center">
-                <form ng-submit ="newPlayer()">
-                    <img class="circular animated zoomInDown" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
-                    <h1>
-                      <font color="white">Bem-vindo,</font>
-                    </h1>
-                    <h2 class="color-font" >{{user.name}}!</h2>
-                    <input  type="hidden" name="player_name" ng-model="user.name" />
-                <input type="hidden" name="player_name" ng-model="user.id" />
-                </form>
-            </div>
+                <h2 class="color-font" >{{user.name}}!</h2>
+                <input  type="hidden" name="player_name" ng-model="user.name" />
+            <input type="hidden" name="player_name" ng-model="user.id" />
+            </form>
         </div>
         <div class="margin-button">
             <button ui-sref="theme.theme" ng-click="GetID(5)" class="button button-block button-calm icon-left ion-plus">
@@ -36,9 +25,11 @@
             <button ui-sref="leaderboard.leaderboard" class="button button-block button-calm icon-left ion-navicon">
                 Maiores Pontuações
             </button>
-
             <button ng-click="add()" class="button button-block button-calm icon-left ion-navicon">
                 Cadastrar
+            </button>
+            <button ng-click="logout()" class="button button-block button-calm icon-left ion-ios-close-empty">
+                Log Out
             </button>
         </div>
     </ion-content>

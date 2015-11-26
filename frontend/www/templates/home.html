@@ -12,29 +12,16 @@
             <img class="full-image" src="img/quantovalecabuloso.png">
         </div>
         <div class="margin-button animated lightSpeedIn">
-            <div ng-if="!isAuthenticated()">
-                <button ng-click="authenticate('facebook')" class="login1 button button-block button-positive icon-left ion-social-facebook">
+            <div>
+                <button ng-click="facebookLogin()" class="login1 button button-block button-positive icon-left ion-social-facebook">
                     Acessar com Facebook
                 </button>
                 <button ng-click="authenticate('google')" class="login2 button button-block button-assertive  icon-left ion-social-googleplus">
                     Acessar com Google+
                 </button>
             </div>
-
-            <div ng-if="isAuthenticated()">
-                <div class="card">
-                    <div class="item item-text text-center">
-                        Você está logado
-                    </div>
-                </div>
-                <button ng-click="logout()" class="button button-full button-royal">
-                    Log Out
-                </button>
-            </div>
             <button  ui-sref="start.start" class="enter button button-full button-clear icon-right ion-chevron-right button-clear button-dark">
-                Entrar
+                Faça Login para acessar o jogo
             </button>
-        </div>
-
     </ion-content>
 </ion-view>
