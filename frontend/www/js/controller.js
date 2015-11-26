@@ -153,10 +153,9 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
 
 
                      var player = {
-                         id: 1,
+                         id: $scope.user.id,
                          score: 10
                      }
-                     console.log("TESTEEE "+ $scope.user);
                      Interation.save(player);
                 } else {
                     document.getElementsByTagName('span')[id].innerHTML = "Errado!";

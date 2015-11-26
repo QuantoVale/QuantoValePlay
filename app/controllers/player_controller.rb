@@ -32,9 +32,9 @@ class PlayerController < ApplicationController
 
      def insertScore
          #Selecionando qual player deve ser atualizado
-         @player =  Player.find(params[:id])
+         @player = Player.find_by_idFb(params[:idFb])
          #Pegando o score atual do player
-         scorePlayer = getScorePlayer(params[:id])
+         scorePlayer = getScorePlayer(params[:idFb])
          #Pegando o valor do Score passado para ser adicionado ao player
          acertos = params[:score]
          score = calcRecompensa(params[:score])
@@ -46,8 +46,8 @@ class PlayerController < ApplicationController
          render json:@player
      end
 
-      def getScorePlayer(id)
-         @player =  Player.find(id)
+      def getScorePlayer(idFb)
+         @player =  Player.find_by_idFb(idFb)
          @player.read_attribute(:score)
       end
 
