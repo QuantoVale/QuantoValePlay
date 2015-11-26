@@ -11,6 +11,32 @@
 .image-face:before {
   background: url('https://graph.facebook.com/{{ user.id }}/picture?width=400&height=400');
 }
+
+.round-button-circle {
+	box-sizing: border-box;
+	margin: 20px;
+	position: fixed;
+	white-space: nowrap;
+	z-index: 30;
+	padding-left: 0;
+	list-style: none;
+	right: 0;
+	top: 0;
+	width: 20%;
+	height:0;
+	padding-bottom: 20%;
+    border-radius: 50%;
+    overflow:hidden;
+
+    background: #FFF;
+}
+
+.margin-h1{
+	    display: block;
+		margin-top: 27px;
+		text-align: center;
+}
+
 .scroll-content{
 
 	background-image: url('../img/bg-clouds.png');

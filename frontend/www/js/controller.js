@@ -144,8 +144,9 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                        points = 400;
                      }
 
-                     document.getElementsByTagName('question')[0].innerHTML = points;
-                     document.getElementsByTagName('result')[0].innerHTML = score;
+                     $scope.buttons = {
+                         label: score
+                     };
 
 
                      console.log("Total = " + total);
