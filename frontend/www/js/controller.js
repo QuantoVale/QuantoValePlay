@@ -121,13 +121,36 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                     document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
 
+
+                   $scope.certa = function(){
+                       return true;
+                   }
+
                     var answer = ScoreEntry.getTrue();
+                    var score;
+                    var points;
+
+                     if ( answer < 3){
+                       score = ScoreEntry.getBonus();
+                       points = 50;
+                     }else if ( answer >= 3 && answer < 6){
+                       score = ScoreEntry.getBonus2();
+                       points = 100;
+                     }else if ( answer >= 6 && answer < 9){
+                       score = ScoreEntry.getBonus4();
+                       points = 200;
+                     }else{
+                       score = ScoreEntry.getBonus8();
+                       points = 400;
+                     }
+
+                     document.getElementsByTagName('question')[0].innerHTML = points;
+                     document.getElementsByTagName('result')[0].innerHTML = score;
+
 
                      console.log("Total = " + total);
 
-                     $scope.certa = function(){
-                         return true;
-                     }
+
                      var player = {
                          id: 1,
                          score: 10
@@ -139,13 +162,19 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                     document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
 
-                    console.log("Total = " + total);
-
                     $scope.certa = function(){
-                      return false;
+                        return false;
                     }
 
-                    answer = ScoreEntry.getTrue();
+                    console.log("Total = " + total);
+
+                    answer = ScoreEntry.getAnswerTrue();
+                    score = ScoreEntry.getScore();
+                    points = 0;
+
+                   document.getElementsByTagName('question')[0].innerHTML = points;
+                   document.getElementsByTagName('result')[0].innerHTML = score;
+
 
                     if ( answer > 1 ){
                         ScoreEntry.resetTrue();
