@@ -117,6 +117,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
 
                 var size = document.getElementsByTagName('span').length;
                 if (x === y) {
+                    document.getElementsByTagName('span')[id].innerHTML = "Certo!";
                     document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
 
@@ -134,6 +135,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                      console.log("TESTEEE "+ $scope.user);
                      Interation.save(player);
                 } else {
+                    document.getElementsByTagName('span')[id].innerHTML = "Errado!";
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                     document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
 
