@@ -9,7 +9,7 @@
 	to { background-position: 100% 0; }
 }
 .image-face:before {
-  background: url('https://graph.facebook.com/{{ user.id }}/picture?width=400&height=400'); 
+  background: url('https://graph.facebook.com/{{ user.id }}/picture?width=400&height=400');
 }
 .scroll-content{
 
@@ -97,7 +97,7 @@
 .modalNew{
     margin-top: 100%;
     margin-left: 5%;
-    width: 90%%;
+    width: 90%;
 }
 
 figure, figcaption {
