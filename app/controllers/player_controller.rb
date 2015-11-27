@@ -25,9 +25,10 @@ class PlayerController < ApplicationController
        render json: Player.find(params[:id])
      end
 
-     def ordination_ranking
+     def ordinationRanking
          @ranking = Player.all
          @ranking.sort {|a,b| b.score <=> a.score}
+         render json: @ranking
      end
 
      def insertScore

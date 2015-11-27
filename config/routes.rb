@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resource :contratos
   root :to => 'contratos#index'
 
-  resources :player, only: [:index, :show, :create, :destroy], defaults: {format: :json}
+  resources :player, only: [:index, :create, :destroy], defaults: {format: :json}
 
   #get "contratos/index" => 'contratos#index'
   # Example of regular route:
@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
     get 'player/:idFb/score/:score' => 'player#insertScore'
-
+    get 'player/ranking' => 'player#ordinationRanking'
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
