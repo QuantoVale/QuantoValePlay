@@ -158,14 +158,16 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                        score = ScoreEntry.getBonus8();
                        points = 400;
                      }
+                    
+                     $scope.buttonsT = {
+                         teste: points
+                     };
 
                      $scope.buttons = {
                          label: score
                      };
 
-
                      console.log("Total = " + total);
-
 
                      var player = {
                          id: $scope.user.id,
@@ -191,9 +193,14 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                     score = ScoreEntry.getScore();
                     points = 0;
 
-                   document.getElementsByTagName('question')[0].innerHTML = points;
-                   document.getElementsByTagName('result')[0].innerHTML = score;
+                   $scope.buttonsT = {
+                       teste: points
+                   };
 
+
+                   $scope.buttons = {
+                       label: score
+                   };
 
                     if ( answer >= 1 ){
                         ScoreEntry.resetTrue();
@@ -213,7 +220,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                 for(var i=0;i<size;i++){
                     document.getElementsByTagName('li')[i].style.pointerEvents = "auto";
                 }
-                document.getElementsByTagName('result')[0].innerHTML = ' ';
+
             }
             $ionicModal.fromTemplateUrl('templates/answered.html', function($ionicModal) {
                 $scope.modal = $ionicModal;
