@@ -112,7 +112,7 @@ angular.module('starter', ['ionic', 'openfb', 'starter.controllers','ngResource'
             views: {
                 'endgame': {
                     templateUrl: 'templates/endgame.html',
-                    controller: 'HomeCtrl'
+                    controller: 'Answer'
                 }
             }
         })

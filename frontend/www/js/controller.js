@@ -123,6 +123,9 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                 if (total == 10){
                     $state.go('endgame.endgame');
                     console.log("Fim da rodada");
+                    score = ScoreEntry.resetScore();
+                    answerTrue = ScoreEntry.resetTrue();
+                    answer = ScoreEntry.resetAnswer();
 
                 }else{
                  console.log("Questões restantes = "+(total));
@@ -158,7 +161,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                        score = ScoreEntry.getBonus8();
                        points = 400;
                      }
-                    
+
                      $scope.buttonsT = {
                          teste: points
                      };
@@ -247,8 +250,16 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
               confirmPopup.then(function(res){
 
                 if(res){
+                  score = ScoreEntry.resetScore();
+                  answerTrue = ScoreEntry.resetTrue();
+                  answer = ScoreEntry.resetAnswer();
+                  $scope.buttons = {
+                      label: score
+                  };
+
                   $state.go('endgame.endgame');
                   console.log('Encerrar');
+
                 }
                 else
                 console.log('Cancelar encerramento');
