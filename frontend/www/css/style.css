@@ -159,9 +159,10 @@
     align-items: center;
 }
 .modalNew{
-    margin-top: 100%;
-    margin-left: 5%;
-    width: 90%%;
+    margin-top: 50%;
+    margin-left: 0%;
+    width: 90%;
+	height: 30%;
 }
 
 figure, figcaption {

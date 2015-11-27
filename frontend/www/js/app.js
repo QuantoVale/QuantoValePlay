@@ -67,7 +67,7 @@ angular.module('starter', ['ionic', 'openfb', 'starter.controllers','ngResource'
             views: {
                 'theme': {
                     templateUrl: 'templates/theme.html',
-                    controller: 'HomeCtrl'
+                    controller: 'Answer'
                 }
             }
         })

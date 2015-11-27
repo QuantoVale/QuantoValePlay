@@ -120,7 +120,10 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                     document.getElementsByTagName('span')[id].innerHTML = "Certo!";
                     document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
-
+                    var size = document.getElementsByTagName('li').length;
+                    for(var i=0;i<size;i++){
+                        document.getElementsByTagName('li')[i].style.pointerEvents = "none";
+                    }
 
                    $scope.certa = function(){
                        return true;
@@ -161,7 +164,10 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                     document.getElementsByTagName('span')[id].innerHTML = "Errado!";
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                     document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
-
+                    var size = document.getElementsByTagName('li').length;
+                    for(var i=0;i<size;i++){
+                        document.getElementsByTagName('li')[i].style.pointerEvents = "none";
+                    }
                     $scope.certa = function(){
                         return false;
                     }
@@ -201,7 +207,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                 console.log($scope.modal);
             }, {
                 scope: $scope,
-                animation: 'slide-in-up',
+                animation: 'jelly',
                 backdropClickToClose: false,
                 hardwareBackButtonClose: false,
                 focusFirstInput: true
