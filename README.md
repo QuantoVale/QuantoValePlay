@@ -1,15 +1,13 @@
 ![](http://imageshack.com/a/img903/1770/TbZH2E.png)
 
-<a href="https://codeclimate.com/github/QuantoVale/QuantoValePlay"><img src="https://codeclimate.com/github/QuantoVale/QuantoValePlay/badges/gpa.svg" /></a>
+--CodeClimate
+[![Code Climate](https://codeclimate.com/github/joao-henrique/forkQuantoVale/badges/gpa.svg)](https://codeclimate.com/github/joao-henrique/forkQuantoVale)
 
 
-[![Coverage Status](https://coveralls.io/repos/QuantoVale/QuantoValePlay/badge.svg?branch=master&service=github)](https://coveralls.io/github/QuantoVale/QuantoValePlay?branch=master)
+--Coverrals
+[![Coverage Status](https://coveralls.io/repos/joao-henrique/forkQuantoVale/badge.svg?branch=master&service=github)](https://coveralls.io/github/joao-henrique/forkQuantoVale?branch=master)
 
-
-[![Build Status](https://travis-ci.org/QuantoVale/QuantoValePlay.svg)](https://travis-ci.org/QuantoVale/QuantoValePlay)
-
-
-[![Stories in Ready](https://badge.waffle.io/QuantoVale/QuantoValePlay.svg?label=ready&title=Ready)](http://waffle.io/QuantoVale/QuantoValePlay)
-
-
-[![Throughput Graph](https://graphs.waffle.io/QuantoVale/QuantoValePlay/throughput.svg)](https://waffle.io/QuantoVale/QuantoValePlay/metrics)
+--master
+[![Build Status](https://travis-ci.org/joao-henrique/forkQuantoVale.svg?branch=master)](https://travis-ci.org/joao-henrique/forkQuantoVale)
+-- devel
+[![Build Status](https://travis-ci.org/joao-henrique/forkQuantoVale.svg?branch=devel)](https://travis-ci.org/joao-henrique/forkQuantoVale)
