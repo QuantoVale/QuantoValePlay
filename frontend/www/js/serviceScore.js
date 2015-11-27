@@ -22,6 +22,9 @@ var score = 0;
     getAnswer: function(){
       return answer += 1;
     },
+    resetAnswer:function(){
+      return answer = 0;
+    },
     getAnswerTrue: function(){
       return answer += 0;
     },
@@ -40,6 +43,9 @@ var score = 0;
     getScore: function(){
       return score += 0;
     },
+    resetScore: function(){
+      return score = 0;
+    }
 
   }
 

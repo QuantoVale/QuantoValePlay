@@ -67,6 +67,19 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
             $scope.counter = 15;
             var total = 0;
 
+
+            $scope.start = function(){
+              var score = ScoreEntry.resetScore();
+              var answerTrue = ScoreEntry.resetTrue();
+              var answer = ScoreEntry.resetAnswer();
+              console.log("Score = ", + score);
+              console.log("answerTrue = ", + answerTrue);
+              console.log("answer = ", + answer );
+              $scope.buttons = {
+                  label: score
+              };
+            }
+
             $scope.jumpa = function(){
             ValuesService.buttonPress().then(function(response) {
                  console.log(ValuesService.getPreviousId);
@@ -129,8 +142,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                        return true;
                    }
 
-                    var answer = ScoreEntry.getTrue();
-                    var score;
+                    answer = ScoreEntry.getTrue();
                     var points;
 
                      if ( answer < 3){
@@ -160,6 +172,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                          score: 10
                      }
                      Interation.save(player);
+
                 } else {
                     document.getElementsByTagName('span')[id].innerHTML = "Errado!";
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
@@ -182,7 +195,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                    document.getElementsByTagName('result')[0].innerHTML = score;
 
 
-                    if ( answer > 1 ){
+                    if ( answer >= 1 ){
                         ScoreEntry.resetTrue();
                         addScore(answer);
                     }
