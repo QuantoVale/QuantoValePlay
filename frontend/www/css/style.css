@@ -12,6 +12,28 @@
   background: url('https://graph.facebook.com/{{ user.id }}/picture?width=400&height=400');
 }
 
+.ng-enter{
+	transition:0.75s;
+	opacity:0;
+}
+
+.ng-enter-stagger{
+	transition-delay:0.5s;
+}
+
+.ng-enter-active{
+	opacity:1;
+}
+
+.ng-leave{
+	transition:0.75s;
+	opacity:1;
+}
+
+.ng-leave-active{
+	opacity: 0;
+}
+
 .round-button-circle {
 	box-sizing: border-box;
 	margin: 20px;
