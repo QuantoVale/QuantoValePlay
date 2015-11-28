@@ -1,3 +1,5 @@
+// arquivo: rails-karma/app/assets/javascripts/example.js
+
 function Example() {
 }
 
