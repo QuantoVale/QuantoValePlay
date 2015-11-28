@@ -102,6 +102,7 @@ GEM
     json_pure (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
+    magic_encoding (0.0.2)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -268,6 +269,7 @@ DEPENDENCIES
   httparty (~> 0.13.5)
   jbuilder (~> 2.0)
   jquery-rails
+  magic_encoding (~> 0.0.2)
   metric_fu (~> 4.12)
   mysql
   rack-cors

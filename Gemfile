@@ -36,7 +36,7 @@ gem 'rack-cors'
 # gem 'capistrano-rails', group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
+gem 'magic_encoding', '~> 0.0.2'
 gem 'coveralls', require: false
 gem 'metric_fu', '~> 4.12'
 gem 'mysql'
