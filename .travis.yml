@@ -1,4 +1,5 @@
-language: ruby
+language:
+  - ruby   
 
 before_script:
   - rake db:migrate RAILS_ENV=test
@@ -14,4 +15,3 @@ branches:
   only:
   - master
   - devel
-  - bdConfiguration
