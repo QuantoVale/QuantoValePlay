@@ -42,6 +42,15 @@ angular.module('starter', ['ionic', 'openfb', 'starter.controllers','ngResource'
                 }
             }
         })
+        .state('app.badgers', {
+            url: '/badgers',
+            views: {
+                'menuContent': {
+                    templateUrl: 'templates/badgers.html',
+                    controller: 'HomeCtrl'
+                }
+            }
+        })
         .state('start', {
             abstract: true,
             templateUrl: 'templates/menu.html',
