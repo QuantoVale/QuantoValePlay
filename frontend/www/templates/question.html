@@ -1,4 +1,5 @@
-<ion-header-bar class="bar bar-header bar-balanced"></ion-header-bar>
+<ion-header-bar class="bar bar-header bar-positive"></ion-header-bar>
+<div class="round-button-circle"><div class="margin-h1">{{buttons.label}}</div></div>
 <ion-view>
     <ion-content class="backgroundQuestion padding">
         <div class="text-center opcquest">
@@ -8,23 +9,21 @@
         </div>
         <ul class="list "ng-repeat="val in values.val">
             <li class="center">
-                <a ng-click="openModal(); compare({{val}}, {{values.trueval}}, {{$index}})" id="button2">
+                <a ng-click="openModal();compare({{val}}, {{values.trueval}}, {{$index}})" id="button2">
                 <span>R$ {{val}}</span>
                 </a>
             </li>
         </ul>
     </ion-content>
-    <div ng-init="onTimeout()">
-         <div class="progress" style="width: {{counter*7}}%;"></div>
-    </div>
 </ion-view>
-<div class="tabs tabs-icon-top tabs-balanced">
-    <a class="tab-item" ng-click="encerrar(); closeModal(); jump(); clean()">
-    <i class="icon ion-ios-close-empty"></i>
-        Encerrar
+<div class="tabs tabs-icon-only tabs-positive" ng-init="onTimeout()">
+    <div class="progress2"></div>
+    <div class="progress" style="width: {{counter*7}}%;"></div>
+
+    <a class="tab-item" ng-click="encerrar(); closeModal(); jump();">
+    <i class="icon ion-android-close"></i>
     </a>
     <a class="tab-item" ng-click = "jump(); clean()">
-    <i class="icon ion-forward"></i>
-        Pular
+    <i class="icon ion-ios-redo"></i>
     </a>
 </div>

@@ -2,12 +2,8 @@ language: ruby
 
 before_script:
   - rake db:migrate RAILS_ENV=test
-
-
 script:
   - rake spec
-  
-  
 rvm:
   - 2.2.0
 notifications:
@@ -16,6 +12,6 @@ notifications:
       - joaohenrique.pereira.almeida@gmail.com
 branches:
   only:
-
   - master
   - devel
+  - bdConfiguration

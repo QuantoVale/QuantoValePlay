@@ -55,6 +55,19 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
             $scope.counter = 15;
             var total = 0;
 
+
+            $scope.start = function(){
+              var score = ScoreEntry.resetScore();
+              var answerTrue = ScoreEntry.resetTrue();
+              var answer = ScoreEntry.resetAnswer();
+              console.log("Score = ", + score);
+              console.log("answerTrue = ", + answerTrue);
+              console.log("answer = ", + answer );
+              $scope.buttons = {
+                  label: score
+              };
+            }
+
             $scope.jumpa = function(){
             ValuesService.buttonPress().then(function(response) {
                  console.log(ValuesService.getPreviousId);
@@ -98,6 +111,9 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                 if (total == 10){
                     $state.go('endgame.endgame');
                     console.log("Fim da rodada");
+                    score = ScoreEntry.resetScore();
+                    answerTrue = ScoreEntry.resetTrue();
+                    answer = ScoreEntry.resetAnswer();
 
                 }else{
                  console.log("Questões restantes = "+(total));
@@ -105,35 +121,79 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
 
                 var size = document.getElementsByTagName('span').length;
                 if (x === y) {
+                    document.getElementsByTagName('span')[id].innerHTML = "Certo!";
                     document.getElementsByTagName('span')[id].style.backgroundColor = "#33cd5f";
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #28a54c";
+                    var size = document.getElementsByTagName('li').length;
+                    for(var i=0;i<size;i++){
+                        document.getElementsByTagName('li')[i].style.pointerEvents = "none";
+                    }
 
-                    var answer = ScoreEntry.getTrue();
+                   $scope.certa = function(){
+                       return true;
+                   }
+
+                    answer = ScoreEntry.getTrue();
+                    var points;
+
+                     if ( answer < 3){
+                       score = ScoreEntry.getBonus();
+                       points = 50;
+                     }else if ( answer >= 3 && answer < 6){
+                       score = ScoreEntry.getBonus2();
+                       points = 100;
+                     }else if ( answer >= 6 && answer < 9){
+                       score = ScoreEntry.getBonus4();
+                       points = 200;
+                     }else{
+                       score = ScoreEntry.getBonus8();
+                       points = 400;
+                     }
+
+                     $scope.buttonsT = {
+                         teste: points
+                     };
+
+                     $scope.buttons = {
+                         label: score
+                     };
 
                      console.log("Total = " + total);
 
-                     $scope.certa = function(){
-                         return true;
-                     }
                      var player = {
-                         id: 1,
+                         id: $scope.user.id,
                          score: 10
                      }
-                     console.log("TESTEEE "+ $scope.user);
                      Interation.save(player);
+
                 } else {
+                    document.getElementsByTagName('span')[id].innerHTML = "Errado!";
                     document.getElementsByTagName('span')[id].style.boxShadow = "0 8px 0 #e42012";
                     document.getElementsByTagName('span')[id].style.backgroundColor = "#ef473a";
+                    var size = document.getElementsByTagName('li').length;
+                    for(var i=0;i<size;i++){
+                        document.getElementsByTagName('li')[i].style.pointerEvents = "none";
+                    }
+                    $scope.certa = function(){
+                        return false;
+                    }
 
                     console.log("Total = " + total);
 
-                    $scope.certa = function(){
-                      return false;
-                    }
+                    answer = ScoreEntry.getAnswerTrue();
+                    score = ScoreEntry.getScore();
+                    points = 0;
 
-                    answer = ScoreEntry.getTrue();
+                   $scope.buttonsT = {
+                       teste: points
+                   };
 
-                    if ( answer > 1 ){
+
+                   $scope.buttons = {
+                       label: score
+                   };
+
+                    if ( answer >= 1 ){
                         ScoreEntry.resetTrue();
                         addScore(answer);
                     }
@@ -151,14 +211,14 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                 for(var i=0;i<size;i++){
                     document.getElementsByTagName('li')[i].style.pointerEvents = "auto";
                 }
-                document.getElementsByTagName('result')[0].innerHTML = ' ';
+
             }
             $ionicModal.fromTemplateUrl('templates/answered.html', function($ionicModal) {
                 $scope.modal = $ionicModal;
                 console.log($scope.modal);
             }, {
                 scope: $scope,
-                animation: 'slide-in-up',
+                animation: 'jelly',
                 backdropClickToClose: false,
                 hardwareBackButtonClose: false,
                 focusFirstInput: true
@@ -178,8 +238,16 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
               confirmPopup.then(function(res){
 
                 if(res){
+                  score = ScoreEntry.resetScore();
+                  answerTrue = ScoreEntry.resetTrue();
+                  answer = ScoreEntry.resetAnswer();
+                  $scope.buttons = {
+                      label: score
+                  };
+
                   $state.go('endgame.endgame');
                   console.log('Encerrar');
+
                 }
                 else
                 console.log('Cancelar encerramento');
