@@ -10,6 +10,7 @@ angular.module('Score', [])
 var answer = 0;
 var answerTrue = 0;
 var score = 0;
+var scoreTotal = 0;
 
   return{
 
@@ -45,6 +46,13 @@ var score = 0;
     },
     resetScore: function(){
       return score = 0;
+    },
+    getScoreTotal: function(){
+       scoreTotal = score;
+       return scoreTotal;
+    },
+    getScoreTotal1: function(){
+      return scoreTotal;
     }
 
   }

@@ -54,6 +54,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
         .controller('Answer', function($scope, ScoreEntry, ValuesService, $ionicPopup, $state, $ionicModal, $ionicSideMenuDelegate, $timeout, Interation) {
             $scope.counter = 15;
             var total = 0;
+            var scoreTotal = 0;
 
 
             $scope.start = function(){
@@ -150,6 +151,8 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                        points = 400;
                      }
 
+                     scoreTotal = ScoreEntry.getScoreTotal();
+
                      $scope.buttonsT = {
                          teste: points
                      };
@@ -158,7 +161,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                          label: score
                      };
 
-                     console.log("Total = " + total);
+                    console.log("Total = " + total);
 
                      var player = {
                          id: $scope.user.id,
@@ -183,6 +186,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                     answer = ScoreEntry.getAnswerTrue();
                     score = ScoreEntry.getScore();
                     points = 0;
+                    scoreTotal = ScoreEntry.getScoreTotal();
 
                    $scope.buttonsT = {
                        teste: points
@@ -241,6 +245,7 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                   score = ScoreEntry.resetScore();
                   answerTrue = ScoreEntry.resetTrue();
                   answer = ScoreEntry.resetAnswer();
+
                   $scope.buttons = {
                       label: score
                   };
@@ -252,6 +257,14 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                 else
                 console.log('Cancelar encerramento');
               })
+            }
+
+            $scope.end = function(){
+              scoreTotal = ScoreEntry.getScoreTotal1();
+              $scope.buttonsA = {
+                score: scoreTotal
+              };
+              return true;
             }
 
             $scope.pular = function(){

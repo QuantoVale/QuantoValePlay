@@ -7,9 +7,11 @@
             <h2>
                 <font color="white">Pontuação:</font>
             </h2>
-            <button class="button button-full button-positive icon-left ion-star" >
-              {{buttons.label}} pontos
-            </button>
+            <div ng-if="end()">
+              <button class="button button-full button-positive icon-left ion-star" >
+                {{buttonsA.score}} pontos
+              </button>
+            </div>
          </div>
       </ion-content>
 </ion-view>
