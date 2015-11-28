@@ -10,6 +10,10 @@
 # Ignore bundler config.
 /.bundle
 
+#Ignore report Folders
+/frontend/coverage/*
+/frontend/report/*
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal

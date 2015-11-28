@@ -2,7 +2,7 @@ describe("Example", function(){
   var example;
 
   beforeEach(function() {
-    example = new Example ();
+    example = new Example();
   })
 
   it("returns 'bar'", function() {
@@ -12,7 +12,8 @@ describe("Example", function(){
   // Este teste está propositalmente comentado
   // para que o coverage não acuse 100% de cobertura.
   //
-//  it("returns 'foo'", function() {
-//     expect(example.bar()).toEqual("foo");
-//   })
+ //it("returns 'foo'", function() {
+//    expect(example.bar()).toEqual("foo");
+  // })
+
 });
