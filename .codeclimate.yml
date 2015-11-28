@@ -8,7 +8,3 @@ exclude_paths:
 - coverage/assets/0.10.0/application.js
 - bower_components/angular-loading-bar/build/loading-bar.js
 - bower_components/angular-loading-bar/src/loading-bar.js
-- frontend/www/lib/ng-material-floating-button/mfb/dist/mfb.js
-- frontend/www/lib/ng-material-floating-button/mfb/src/mfb.js
-- frontend/www/lib/ng-resource/app/js/src/Resource.js
-- frontend/www/lib/ng-resource/dist/ng-resource.js
