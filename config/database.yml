@@ -9,7 +9,7 @@ development:
   encoding: utf8
   database: quantoValeDB_development
   username: root
-  password: novo2015
+  password: root
   host: 127.0.0.1
   port: 3306
   pool: 5

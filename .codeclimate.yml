@@ -3,6 +3,7 @@ languages:
    JavaScript: true
 exclude_paths:
 - frontend/www/lib/**/*
+- frontend/report/lib/**/*
 - bower_components/angular/angular.js
 - bower_components/angular/angular.min.js
 - coverage/assets/0.10.0/application.js
