@@ -1,6 +1,20 @@
 angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb'])
     .controller('AppCtrl', function($scope, $ionicModal, $timeout) {})
 
+        .controller("RankingController",
+            function($scope, $http) {
+                var url = "http://localhost:3000/player/ranking";
+                $http.get(url).success(function(data) {
+                    console.log(data);
+                    $scope.players = data;
+                }).error(function(error) {
+                    console.log("Server side error");
+                });
+                $scope.logRank= function(){
+                    console.log("Players: "+data);
+                }
+            })
+
         .controller("PlayersController",
             function($scope, Players, $http) {
                 var url = "http://localhost:3000/player"

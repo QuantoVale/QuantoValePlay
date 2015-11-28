@@ -90,7 +90,7 @@ angular.module('starter', ['ionic', 'openfb', 'starter.controllers','ngResource'
             views: {
                 'leaderboard': {
                     templateUrl: 'templates/leaderboard.html',
-                    controller: 'HomeCtrl'
+                    controller: 'RankingController'
                 }
             }
         })
