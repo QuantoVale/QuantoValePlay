@@ -200,7 +200,7 @@
                 total = ScoreEntry.getAnswer();
 
                 if (total == 10){
-                    $state.go(&#039;endgame.endgame&#039;);
+                    $state.go(&#039;app.endgame&#039;);
                     console.log(&quot;Fim da rodada&quot;);
                     score = ScoreEntry.resetScore();
                     answerTrue = ScoreEntry.resetTrue();
@@ -336,7 +336,7 @@
                       label: score
                   };
 
-                  $state.go(&#039;endgame.endgame&#039;);
+                  $state.go(&#039;app.endgame&#039;);
                   console.log(&#039;Encerrar&#039;);
 
                 }
@@ -376,7 +376,7 @@
 
             OpenFB.login(&#039;public_profile&#039;,&#039;email&#039;,&#039;user_friends&#039;,&#039;user_birthday&#039;,&#039;publish_actions&#039;).then(
                 function () {
-                    $state.go(&#039;start.start&#039;);
+                    $state.go(&#039;app.start&#039;);
                 },
                 function () {
                     $ionicPopup.alert({

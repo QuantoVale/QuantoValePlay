@@ -51,92 +51,48 @@ angular.module('starter', ['ionic', 'openfb', 'starter.controllers','ngResource'
                 }
             }
         })
-        .state('start', {
-            abstract: true,
-            templateUrl: 'templates/menu.html',
-          controller: 'AppCtrl'
-        })
-
-        .state('start.start', {
+        .state('app.start', {
             url: '/start',
             views: {
-                'start': {
+                'menuContent': {
                     templateUrl: 'templates/start.html',
                     controller: 'HomeCtrl'
                 }
             }
         })
-        .state('theme', {
-            abstract: true,
-            templateUrl: 'templates/menu.html',
-          controller: 'AppCtrl'
-        })
-        .state('theme.theme', {
+        .state('app.theme', {
             url: '/theme',
             views: {
-                'theme': {
+                'menuContent': {
                     templateUrl: 'templates/theme.html',
                     controller: 'Answer'
                 }
             }
         })
-        .state('leaderboard', {
-            abstract: true,
-            templateUrl: 'templates/menu.html',
-            controller: 'AppCtrl'
-        })
-        .state('leaderboard.leaderboard', {
+        .state('app.leaderboard', {
             url: '/leaderboard',
             views: {
-                'leaderboard': {
+                'menuContent': {
                     templateUrl: 'templates/leaderboard.html',
                     controller: 'RankingController'
                 }
             }
         })
-        .state('add', {
-            abstract: true,
-            templateUrl: 'templates/add.html',
-            controller: 'PlayersController'
-        })
-        .state('add.add', {
-            url: '/add',
-            views: {
-                'add': {
-                    templateUrl: 'templates/add.html',
-                    controller: 'PlayersController'
-                }
-            }
-        })
-
-
-
-        .state('endgame', {
-            abstract: true,
-            templateUrl: 'templates/menu.html',
-            controller: 'AppCtrl'
-        })
-        .state('endgame.endgame', {
+        .state('app.endgame', {
             url: '/endgame',
             views: {
-                'endgame': {
+                'menuContent': {
                     templateUrl: 'templates/endgame.html',
                     controller: 'Answer'
                 }
             }
         })
-        .state('question', {
-            abstract: true,
-            templateUrl: 'templates/menu.html',
-            controller: 'AppCtrl'
-        })
-        .state('question.question', {
+        .state('app.question', {
             url: '/question',
             views: {
-                'question': {
+                'menuContent': {
                     templateUrl: 'templates/question.html',
                     controller: 'Answer'
-
                 }
             }
         });
