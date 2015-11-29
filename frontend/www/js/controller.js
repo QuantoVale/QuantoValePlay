@@ -101,7 +101,7 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                         title: 'Você atingiu o limite máximo!',
                     });
                 }
-            
+
             }
 
             $scope.onTimeout = function() {
@@ -116,7 +116,7 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                     confirmPopup.then(function(res) {
                         if (res) {
                             $scope.counter = 15;
-                            $scope.jumpa();
+                            $scope.jump();
                             $scope.onTimeout();
                         } else
                             console.log('Cancelar encerramento');
@@ -128,13 +128,8 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                 $scope.counter = 15;
                 $scope.onTimeout();
             }
-            $scope.true = function(){
-              return true;
-            }
 
             $scope.compare = function(x, y, id) {
-
-                total = ScoreEntry.getAnswer();
 
                 var size = document.getElementsByTagName('span').length;
                 if (x === y) {
@@ -293,6 +288,7 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
             })
 
             $scope.jump = function() {
+
                 ValuesService.buttonPress().then(function(response) {
                     console.log(ValuesService.getPreviousId);
                     console.log(response.data);
@@ -301,6 +297,7 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                     $scope.timeout();
                 })
 
+                  total = ScoreEntry.getAnswer();
 
                   if (total == 10){
                     $state.go('app.endgame');
