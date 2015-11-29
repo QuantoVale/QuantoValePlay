@@ -75,6 +75,7 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                 var score = ScoreEntry.resetScore();
                 var answerTrue = ScoreEntry.resetTrue();
                 var answer = ScoreEntry.resetAnswer();
+                var pular = ScoreEntry.jumpReset();
                 console.log("Score = ", +score);
                 console.log("answerTrue = ", +answerTrue);
                 console.log("answer = ", +answer);
@@ -84,12 +85,23 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
             }
 
             $scope.jumpa = function() {
-                ValuesService.buttonPress().then(function(response) {
-                    console.log(ValuesService.getPreviousId);
-                    console.log(response.data);
-                    $scope.values = response.data;
-                    $scope.counter = 15;
-                })
+
+                pular = ScoreEntry.jump();
+
+                if ( pular <= 3 ){
+                    ValuesService.buttonPress().then(function(response) {
+                        console.log(ValuesService.getPreviousId);
+                        console.log(response.data);
+                        $scope.values = response.data;
+                        $scope.counter = 15;
+                    })
+                }
+                else {
+                    var confirmPopup = $ionicPopup.confirm({
+                        title: 'Você atingiu o limite máximo!',
+                    });
+                }
+            
             }
 
             $scope.onTimeout = function() {
@@ -123,16 +135,6 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
             $scope.compare = function(x, y, id) {
 
                 total = ScoreEntry.getAnswer();
-                if (total == 10) {
-                    $state.go('app.endgame');
-                    console.log("Fim da rodada");
-                    score = ScoreEntry.resetScore();
-                    answerTrue = ScoreEntry.resetTrue();
-                    answer = ScoreEntry.resetAnswer();
-
-                } else {
-                    console.log("Questões restantes = " + (total));
-                }
 
                 var size = document.getElementsByTagName('span').length;
                 if (x === y) {
@@ -301,7 +303,7 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
 
 
                   if (total == 10){
-                    $state.go('endgame.endgame');
+                    $state.go('app.endgame');
                     console.log("Fim da rodada");
                     score = ScoreEntry.resetScore();
                     answerTrue = ScoreEntry.resetTrue();

@@ -9,6 +9,7 @@ angular.module('Score', [])
     var answerTrue = 0;
     var score = 0;
     var scoreTotal = 0;
+    var jump = 0;
     return {
         getTrue: function() {
             return answerTrue += 1;
@@ -49,6 +50,12 @@ angular.module('Score', [])
         },
         getScoreTotal1: function() {
             return scoreTotal;
+        },
+        jump: function(){
+            return jump += 1;
+        },
+        jumpReset: function(){
+            return jump = 0;
         }
     }
 }])
