@@ -118,21 +118,13 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
               $scope.onTimeout();
             }
 
+            $scope.true = function(){
+              return true;
+            }
 
             $scope.compare = function(x, y, id) {
 
                 total = ScoreEntry.getAnswer();
-
-                if (total == 10){
-                    $state.go('endgame.endgame');
-                    console.log("Fim da rodada");
-                    score = ScoreEntry.resetScore();
-                    answerTrue = ScoreEntry.resetTrue();
-                    answer = ScoreEntry.resetAnswer();
-
-                }else{
-                 console.log("Questões restantes = "+(total));
-               }
 
                 var size = document.getElementsByTagName('span').length;
                 if (x === y) {
@@ -299,6 +291,21 @@ angular.module('starter.controllers', ['callRails', 'Score','ngResource','openfb
                     $scope.counter = 15;
                     $scope.timeout();
                 })
+
+
+                  if (total == 10){
+                    $state.go('endgame.endgame');
+                    console.log("Fim da rodada");
+                    score = ScoreEntry.resetScore();
+                    answerTrue = ScoreEntry.resetTrue();
+                    answer = ScoreEntry.resetAnswer();
+                    $scope.buttons = {
+                        label: score
+                    };
+
+                  }else{
+                    console.log("Questões restantes = "+(total));
+                  }
             }
         })
 
