@@ -1,5 +1,7 @@
 <ion-header-bar class="bar bar-header bar-positive"></ion-header-bar>
-<div class="round-button-circle"><div class="margin-h1">{{buttons.label}}</div></div>
+<div class="round-button-circle">
+    <div class="margin-h1" >{{buttons.label}}</div>
+</div>
 <ion-view>
     <ion-content class="backgroundQuestion padding">
         <div class="text-center opcquest">
@@ -9,7 +11,7 @@
         </div>
         <ul class="list "ng-repeat="val in values.val">
             <li class="center">
-                <a ng-click="openModal();compare({{val}}, {{values.trueval}}, {{$index}})" id="button2">
+                <a ng-click="openModal();compare({{val}}, {{values.trueval}}, {{$index}})"id="button2">
                 <span>R$ {{val}}</span>
                 </a>
             </li>

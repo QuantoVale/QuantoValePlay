@@ -116,11 +116,13 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                 $scope.counter = 15;
                 $scope.onTimeout();
             }
+            $scope.true = function(){
+              return true;
+            }
 
             $scope.compare = function(x, y, id) {
 
                 total = ScoreEntry.getAnswer();
-
                 if (total == 10) {
                     $state.go('app.endgame');
                     console.log("Fim da rodada");
@@ -296,6 +298,21 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                     $scope.counter = 15;
                     $scope.timeout();
                 })
+
+
+                  if (total == 10){
+                    $state.go('endgame.endgame');
+                    console.log("Fim da rodada");
+                    score = ScoreEntry.resetScore();
+                    answerTrue = ScoreEntry.resetTrue();
+                    answer = ScoreEntry.resetAnswer();
+                    $scope.buttons = {
+                        label: score
+                    };
+
+                  }else{
+                    console.log("Questões restantes = "+(total));
+                  }
             }
         })
 
