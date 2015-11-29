@@ -5,20 +5,20 @@ RSpec.describe ContratosController, type: :controller do
     describe "GET #Index" do
       #condição
       it "should show all contracts" do
-          contracts = Contrato.all
+          contracts = (Contrato.all).to_json
           #pega os valores
-          get :index
+          get :listAllContracts
           #compara dois objetos
-          expect(assigns(:contratos)).to eq(contracts)
+          expect(assigns(:listAllContracts)).to eq(contracts)
       end
-
       #condição
       it "should render json" do
           #pega os valores
           contracts = (Contrato.all).to_json
-          get :index
+          get :listAllContracts
           expect(response.body).to eq(contracts)
       end
+
     end
     # indentifica um método o rash #
     describe "POST #values_aleatory" do
@@ -41,7 +41,44 @@ RSpec.describe ContratosController, type: :controller do
             end
         end
 
-
-
-
+        describe "test values ​​read by api" do
+                it "test values ​​read by api" do
+                    u = Contrato.new(
+                        :identificadorContrato =>'Identificador',
+                        :uasg => 'uasg',
+                        :modalidadeLicitacao => 'modalidade_licitacao',
+                        :codigoContrato => 'codigo_contrato',
+                        :licitacaoAssociada => 'licitacao_associada',
+                        :objeto => 'objeto',
+                        :numeroAditivos => 1,
+                        :numeroProcessos => 1,
+                        :CPFContratada => 'cnpj_contratada',
+                        :dataAssinatura => 'data_assinatura',
+                        :fundamentoGeral => 'fundamento_geral',
+                        :dataInicioVigencia => 'data_inicio_vigencia',
+                        :dataTerminoVigencia => 'data_termino_vigencia',
+                        :valorInicial => "100.0"
+                    )
+                    #salva a informação no banco;
+                    u.save
+                    #acessa a o método show usando o id do contrado criado acima
+                    get :show, id: u.id
+                    expect(assigns(:contrato).identificadorContrato).to eq(u.identificadorContrato)
+                    expect(assigns(:contrato).uasg).to eq(u.uasg)
+                    expect(assigns(:contrato).modalidadeLicitacao).to eq(u.modalidadeLicitacao)
+                    expect(assigns(:contrato).codigoContrato).to eq(u.codigoContrato)
+                    expect(assigns(:contrato).licitacaoAssociada).to eq(u.licitacaoAssociada)
+                    expect(assigns(:contrato).objeto).to eq(u.objeto)
+                    expect(assigns(:contrato).objeto).to eq(u.objeto)
+                    expect(assigns(:contrato).numeroAditivos).to eq(u.numeroAditivos)
+                    expect(assigns(:contrato).numeroProcessos).to eq(u.numeroProcessos)
+                    expect(assigns(:contrato).CPFContratada).to eq(u.CPFContratada)
+                    expect(assigns(:contrato).modalidadeLicitacao).to eq(u.modalidadeLicitacao)
+                    expect(assigns(:contrato).dataAssinatura).to eq(u.dataAssinatura)
+                    expect(assigns(:contrato).fundamentoGeral).to eq(u.fundamentoGeral)
+                    expect(assigns(:contrato).dataInicioVigencia).to eq(u.dataInicioVigencia)
+                    expect(assigns(:contrato).dataTerminoVigencia).to eq(u.dataTerminoVigencia)
+                    expect(assigns(:contrato).valorInicial).to eq(u.valorInicial)
+                 end
+             end
 end

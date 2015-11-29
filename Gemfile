@@ -39,5 +39,5 @@ gem 'rack-cors'
 gem 'magic_encoding', '~> 0.0.2'
 gem 'coveralls', require: false
 gem 'metric_fu', '~> 4.12'
-gem 'mysql'
+
 gem 'seed_dump'
