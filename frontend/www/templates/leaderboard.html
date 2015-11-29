@@ -1,73 +1,15 @@
 <ion-view>
-    <ion-content class="backgroundQuestion icon-profile padding">
-        <button ng-click="logRank()" class="opcoes1 button button-full button-positive icon-left ion-plus">
-            Log
-        </button>
-        <div class="list">
-            <h2 class="text-center"><font color="white">Pontuações</font></h2>
-            <a class="item item-avatar" href="#">
-                <img src="img/ionic.png">
-                <h2>Name</h2>
-                <p>0000 pts.</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/ionic.png">
-                <h2>Name</h2>
-                <p>0000 pts.</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/ionic.png">
-                <h2>Name</h2>
-                <p>0000 pts.</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/ionic.png">
-                <h2>Name</h2>
-                <p>0000 pts.</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/ionic.png">
-                <h2>Name</h2>
-                <p>0000 pts.</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/ionic.png">
-                <h2>Name</h2>
-                <p>0000 pts.</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/ionic.png">
-                <h2>Name</h2>
-                <p>0000 pts.</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/ionic.png">
-                <h2>Name</h2>
-                <p>0000 pts.</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/ionic.png">
-                <h2>Name</h2>
-                <p>0000 pts.</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/ionic.png">
-                <h2>Name</h2>
-                <p>0000 pts.</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/ionic.png">
-                <h2>Name</h2>
-                <p>0000 pts.</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/ionic.png">
-                <h2>Name</h2>
-                <p>0000 pts.</p>
+    <ion-content class="icon-profile padding">
+        <h2 class="text-center margin-button"><font color="white">Maiores Pontuações</font></h2>
+        <div class="list" ng-repeat="player in players">
+            <a class="item item-avatar">
+                <img ng-src="https://graph.facebook.com/{{ player.idFb }}/picture?width=600&height=600">
+                <h2>{{player.name}}</h2>
+                <p>{{player.score}} pts.</p>
             </a>
         </div>
     </ion-content>
 </ion-view>
 <div class="bar bar-footer bar-clear">
-    <a class="button button-clear icon-left ion-ios-arrow-left" ui-sref="start.start"><font color="black"> Voltar</font> </a>
+    <a class="button button-clear icon-left ion-ios-arrow-left" ui-sref="start.start"><font color="white"> Voltar</font> </a>
 </div>
