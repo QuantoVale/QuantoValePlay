@@ -4,6 +4,11 @@ class ContratosController < ApplicationController
        render json:@contratos
   end
 
+  def listAllContracts
+       @list_all_contracts = Contrato.all
+       render json:@list_all_contracts
+  end
+
   def values_aleatory value_true
     return value_true*(1+rand(30))/(1+(rand(30)))
   end
@@ -54,6 +59,6 @@ class ContratosController < ApplicationController
 
   def show
       generateRanking()
-      render json:service
+      render json: service
   end
 end

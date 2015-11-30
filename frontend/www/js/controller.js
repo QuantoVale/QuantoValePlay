@@ -180,7 +180,8 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                         id: $scope.user.id,
                         score: 10
                     }
-                    Interation.save(player);
+                    
+                        Interation.save(player);
 
                 } else {
                     document.getElementsByTagName('span')[id].innerHTML = "Errado!";

@@ -26,8 +26,6 @@ class PlayerController < ApplicationController
      end
 
      def ordinationRanking
-         #@ranking = Player.all
-         #@ranking.sort {|a,b| b.score <=> a.score}
          @ranking = Player.order(score: :desc)
          render json: @ranking
      end
