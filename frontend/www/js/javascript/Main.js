@@ -1,8 +1,12 @@
 var app = angular.module('app', []);
 
-
-app.controller('NavCtrl', function($scope, $location) {
+app.controller('NavCtrl', function($scope) {
     $scope.isActive = function(route) {
-        return route === $location.path();
     };
+})
+
+
+app.controller('Nav', function($scope) {
+   myName = 'PauloHenrique';
+   return myName;
 })

@@ -13,3 +13,10 @@ var app = angular.module('app', [])
          }
      }
  });
+
+
+function mainCtrl($scope, GreetingService) {
+   $scope.myName = 'Paulo Henrique';
+
+   $scope.greetings = GreetingService.greeting + ', ' + $scope.myName;
+}
