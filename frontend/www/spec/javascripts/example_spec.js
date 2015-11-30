@@ -12,8 +12,8 @@ describe("Example", function(){
   // Este teste está propositalmente comentado
   // para que o coverage não acuse 100% de cobertura.
   //
- //it("returns 'foo'", function() {
-//    expect(example.bar()).toEqual("foo");
-  // })
+ it("returns 'foo'", function() {
+    expect(example.bar()).toEqual("foo");
+   })
 
 });

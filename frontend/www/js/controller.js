@@ -1,5 +1,8 @@
 angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'openfb'])
-    .controller('AppCtrl', function($scope, $ionicModal, $timeout) {})
+    .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+      $scope.return = "Testado";
+
+    })
 
     .controller("RankingController",
         function($scope, $http) {
@@ -15,7 +18,6 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
     .controller("PlayersController",
         function($scope, Players, $http) {
             var url = "http://localhost:3000/player"
-
             $http.get(url).success(function(data) {
                     console.log(data);
                     alert("Logado com Sucesso");

@@ -13,6 +13,9 @@
 #Ignore report Folders
 /frontend/coverage/*
 /frontend/report/*
+/frontend/wwww/report/*
+/frontend/www/report/*
+
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
