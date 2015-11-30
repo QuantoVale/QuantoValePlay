@@ -1,10 +1,10 @@
 <ion-view>
-    <ion-content class="backgroundEndgame">
+    <ion-content >
         <div ng-if="!isAuthenticated()">
             <div class="logo icon-profile text-center">
-                <img src="img/ionic.png">
+                  <img class="circular animated zoomInDown" ng-src="https://graph.facebook.com/{{ user.id }}/picture?width=600&height=600" />
             </div>
-            <h2>
+            <h2 class="center">
                 <font color="white">Pontuação:</font>
             </h2>
             <div ng-if="end()">
@@ -15,7 +15,7 @@
          </div>
       </ion-content>
 </ion-view>
-<div class="tabs tabs-icon-top tabs-balanced">
+<div class="tabs tabs-icon-only tabs-positive">
     <a class="tab-item" ui-sref="app.start">
     <i class="icon ion-ios-home"></i>
     Menu Principal
