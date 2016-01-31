@@ -1,8 +1,5 @@
 angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'openfb'])
-    .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
-      $scope.return = "Testado";
-
-    })
+    .controller('AppCtrl', function($scope, $ionicModal, $timeout) {})
 
     .controller("RankingController",
         function($scope, $http) {
@@ -18,6 +15,7 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
     .controller("PlayersController",
         function($scope, Players, $http) {
             var url = "http://localhost:3000/player"
+
             $http.get(url).success(function(data) {
                     console.log(data);
                     alert("Logado com Sucesso");
@@ -72,8 +70,11 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
             $scope.counter = 15;
             var total = 0;
             var scoreTotal = 0;
+             var mytimeout;
 
             $scope.start = function() {
+                $scope.counter = 15;
+                $scope.onTimeout();
                 var score = ScoreEntry.resetScore();
                 var answerTrue = ScoreEntry.resetTrue();
                 var answer = ScoreEntry.resetAnswer();
@@ -85,11 +86,8 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                     label: score
                 };
             }
-
             $scope.jumpa = function() {
-
                 pular = ScoreEntry.jump();
-
                 if ( pular <= 3 ){
                     ValuesService.buttonPress().then(function(response) {
                         console.log(ValuesService.getPreviousId);
@@ -103,7 +101,6 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                         title: 'Você atingiu o limite máximo!',
                     });
                 }
-
             }
 
             $scope.onTimeout = function() {
@@ -180,7 +177,7 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                         id: $scope.user.id,
                         score: 10
                     }
-                    
+
                         Interation.save(player);
 
                 } else {
@@ -319,6 +316,18 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
         })
 
     .controller('HomeCtrl', function($scope, $state, $ionicPopup, OpenFB, $ionicSideMenuDelegate, Players) {
+
+        $scope.add = function() {
+            var newPlayer = {
+            name: $scope.user.name,
+            idFb: $scope.user.id,
+            score: $scope.user.score
+        };
+
+            console.log(newPlayer);
+            Players.save(newPlayer);
+    }
+
 
         $scope.hasData = function() {
             return false;

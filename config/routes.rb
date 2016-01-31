@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   #resource :contratos
-  get  'contratos/index' => 'contratos#index'
-
-
+  resource :contratos
+  root :to => 'contratos#index'
+  
   resources :player, only: [:index,:create, :destroy], defaults: {format: :json}
 
   #get "contratos/index" => 'contratos#index'

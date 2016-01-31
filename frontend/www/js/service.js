@@ -1,7 +1,7 @@
 angular.module('callRails', ['ngResource'])
 
 .constant('CALL_RAILS', {
-  url: "http://0.0.0.0:3000/contratos/index"
+  url: "http://0.0.0.0:3000/contratos/"
 })
 
 .factory('ValuesService', ['$http', 'CALL_RAILS', function($http, CALL_RAILS) {
