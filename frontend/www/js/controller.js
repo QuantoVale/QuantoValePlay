@@ -72,8 +72,11 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
             $scope.counter = 15;
             var total = 0;
             var scoreTotal = 0;
+            var mytimeout;
 
             $scope.start = function() {
+                $scope.counter = 15;
+                $scope.onTimeout();
                 var score = ScoreEntry.resetScore();
                 var answerTrue = ScoreEntry.resetTrue();
                 var answer = ScoreEntry.resetAnswer();
@@ -111,27 +114,45 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                 if ($scope.counter > 0) {
                     mytimeout = $timeout($scope.onTimeout, 1000);
                 } else {
-                    var confirmPopup = $ionicPopup.confirm({
+                    var confirmPopup = $ionicPopup.alert({
                         title: 'Seu tempo Acabou!',
-                        template: 'Deseja uma proxima questão ?'
+                        template: 'Que pena, não vai ganhar sorvete'
                     });
                     confirmPopup.then(function(res) {
                         if (res) {
                             $scope.counter = 15;
                             $scope.jump();
                             $scope.onTimeout();
-                        } else
-                            console.log('Cancelar encerramento');
+                        };
                     })
                 }
             }
+            $scope.stopTime = function(mytimeout) {
+                $timeout.cancel(mytimeout);
+            }
 
-            $scope.reset = function() {
-                $scope.counter = 15;
-                $scope.onTimeout();
+
+            $scope.compare = function(x, y, id) {
+
+
+            $scope.true = function(){
+              return true;
             }
 
             $scope.compare = function(x, y, id) {
+                $scope.stopTime();
+                total = ScoreEntry.getAnswer();
+                if (total == 10) {
+                    $state.go('app.endgame');
+                    console.log("Fim da rodada");
+                    score = ScoreEntry.resetScore();
+                    answerTrue = ScoreEntry.resetTrue();
+                    answer = ScoreEntry.resetAnswer();
+
+                } else {
+                    console.log("Questões restantes = " + (total));
+                }
+
 
                 var size = document.getElementsByTagName('span').length;
                 if (x === y) {
@@ -180,7 +201,7 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                         id: $scope.user.id,
                         score: 10
                     }
-                    
+
                         Interation.save(player);
 
                 } else {
@@ -247,6 +268,31 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
             $scope.closeModal = function() {
                 $scope.modal.hide();
             };
+            $scope.jump = function() {
+                ValuesService.buttonPress().then(function(response) {
+                    console.log(ValuesService.getPreviousId);
+                    console.log(response.data);
+                    $scope.values = response.data;
+                    $scope.counter = 15;
+                    $scope.timeout(mytimeout,1000);
+                })
+
+
+                  if (total == 10){
+                    $state.go('endgame.endgame');
+                    console.log("Fim da rodada");
+                    score = ScoreEntry.resetScore();
+                    answerTrue = ScoreEntry.resetTrue();
+                    answer = ScoreEntry.resetAnswer();
+                    $scope.buttons = {
+                        label: score
+                    };
+
+                  }else{
+                    console.log("Questões restantes = "+(total));
+                  }
+            }
+
             $scope.encerrar = function() {
                 var confirmPopup = $ionicPopup.confirm({
                     title: 'Fim da partida',
@@ -263,12 +309,14 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                         $scope.buttons = {
                             label: score
                         };
-
+                        $timeout.cancel(mytimeout);
                         $state.go('app.endgame');
                         console.log('Encerrar');
 
-                    } else
+                    } else{
+                        $scope.jump();
                         console.log('Cancelar encerramento');
+                    }
                 })
             }
 
@@ -289,6 +337,7 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                 console.log(response.data);
                 $scope.values = response.data;
             })
+
 
             $scope.jump = function() {
 
@@ -316,33 +365,10 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
                     console.log("Questões restantes = "+(total));
                   }
             }
+
         })
 
     .controller('HomeCtrl', function($scope, $state, $ionicPopup, OpenFB, $ionicSideMenuDelegate, Players) {
-
-        $scope.hasData = function() {
-            return false;
-        }
-
-        $scope.facebookLogin = function() {
-
-            OpenFB.login('public_profile', 'email', 'user_friends', 'user_birthday', 'publish_actions').then(
-                function() {
-                    $state.go('app.start');
-                },
-                function() {
-                    $ionicPopup.alert({
-                        title: 'Autenticação falhou',
-                        content: response.data ? response.data || response.data.message : response
-                    })
-                });
-        };
-
-
-        $scope.logout = function() {
-            OpenFB.logout();
-            $state.go('app.home');
-        };
 
         $scope.add = function() {
             var newPlayer = {
@@ -354,6 +380,26 @@ angular.module('starter.controllers', ['callRails', 'Score', 'ngResource', 'open
             console.log(newPlayer);
             Players.save(newPlayer);
         }
+
+        $scope.facebookLogin = function() {
+
+            OpenFB.login('public_profile', 'email', 'user_friends', 'user_birthday', 'publish_actions').then(
+                function() {
+                    $scope.add();
+                    $state.go('app.start');
+                },
+                function() {
+                    $ionicPopup.alert({
+                        title: 'Autenticação falhou',
+                        content: response.data ? response.data || response.data.message : response
+                    })
+                });
+        };
+
+        $scope.logout = function() {
+            OpenFB.logout();
+            $state.go('app.home');
+        };
 
         $scope.toggleLeft = function() {
             $ionicSideMenuDelegate.toggleLeft();

@@ -2,7 +2,7 @@
      active-icon="ion-close-round" resting-icon="ion-plus-round"
      toggling-method="click">
      <button mfb-button icon="ion-android-contact" label="{{user.name}}"></button>
-     <button mfb-button icon="ion-gear-a" ui-sref="app.badgers" label="Troféus"></button>
+     <button mfb-button icon="ion-trophy" ui-sref="app.badgers" label="Troféus"></button>
      <button mfb-button icon="ion-gear-a" label="Opções"></button>
 </nav>
 <ion-view>
@@ -19,12 +19,18 @@
             </form>
         </div>
         <div class="margin-button">
-            <button ui-sref="app.theme" ng-controller="Answer" ng-click="clean()" class="button button-block button-calm icon-left ion-plus">
+            <button ui-sref="app.theme" ng-controller="Answer" ng-click="clean()" class="button button-block button-calm icon-left ion-ios-game-controller-a">
                 Novo Jogo
             </button>
-            <button ui-sref="app.leaderboard" class="button button-block button-calm icon-left ion-navicon">
+            <button ui-sref="app.leaderboard" class="button button-block button-calm icon-left ion-podium">
                 Maiores Pontuações
             </button>
+<<<<<<< HEAD
+=======
+            <button ng-click="logout()" class="button button-block button-calm icon-left ion-ios-close-empty">
+                Log Out
+            </button>
+>>>>>>> USrefac1
         </div>
     </ion-content>
 </ion-view>
