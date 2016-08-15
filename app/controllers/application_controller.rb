@@ -14,5 +14,4 @@ class ApplicationController < ActionController::Base
     puts "teste"
     @player= Player.find(id);
   end
-
-end
+end                                                   
