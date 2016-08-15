@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     assert { !id.nil? }
     id = id.to_i
     assert { id >= 0 }
-
+    puts "teste"
     @player= Player.find(id);
 
   end
