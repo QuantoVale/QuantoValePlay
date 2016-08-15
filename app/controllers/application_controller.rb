@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     assert { id >= 0 }
     puts "teste"
     @player= Player.find(id);
-
+                          
   end
 
 end
